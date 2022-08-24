@@ -1,0 +1,8 @@
+[package]
+name = "claw_parse"
+version = "1.0.0-dev"
+edition = "2021"
+
+[dependencies]
+claw_lex = { path = "../claw_lex" }
+thiserror = "1.0.32"

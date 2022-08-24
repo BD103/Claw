@@ -1,0 +1,17 @@
+[package]
+name = "claw_verify"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+claw = { path = "../../" }
+
+# Error handling
+anyhow = "1.0.62"
+
+# Schema verification
+jsonschema = "0.16.0"
+serde_json = "1.0.85"
+
+# Url medium for Json Schema
+url = "2.2.2"

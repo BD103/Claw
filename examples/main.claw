@@ -1,0 +1,80 @@
+declare Event {
+    Detect,
+}
+
+declare List {
+    Barriers,
+    Decorations,
+}
+
+sprite Player {
+    @flag_clicked
+    fn start() {
+        use sensing::is_key_pressed;
+
+        motion::goto(0, 0);
+
+        forever {
+            if (is_key_pressed($Key::W) || is_key_pressed($Key::UpArrow)) {
+                move_forward(2);
+                events::broadcast_wait($Event::Detect);
+            }
+
+            if (is_key_pressed($Key::A) || is_key_pressed($Key::LeftArrow)) {
+                turn_left(90);
+                events::broadcast_wait($Event::Detect);
+            }
+
+            if (is_key_pressed($Key::D) || is_key_pressed($Key::RightArrow)) {
+                turn_right(90);
+                events::broadcast_wait($Event::Detect);
+            }
+        }
+    }
+
+    fn move_forward(pixels: number) {
+        motion::move_steps(pixels);
+
+        if sensing::is_touching($Sprite::Wall) {
+            motion::move_steps(pixels * -1);
+        }
+    }
+
+    fn turn_left(degrees: number) {
+        motion::turn_left(degrees);
+    }
+
+    fn turn_right(degrees: number) {
+        motion::turn_right(degrees);
+    }
+}
+
+sprite Detection {
+    declare Variable {
+        Distance,
+        I,
+    }
+
+    @on_start
+    fn start() {
+        motion::goto(0, 0);
+        looks::set_effect($Effect::Ghost, 100);
+    }
+
+    @on_recieve($Event::Detect)
+    fn on_detect_event() {
+        detect();
+        events::broadcast_wait($Event::Render);
+    }
+
+    fn detect() {
+        variables::delete_all($List::Barriers);
+        variables::delete_all($List::Decorations);
+        variables::set($Variable::I, -48);
+
+        repeat (96) {
+            variables::set($Variable::Distance, 0);
+            motion::goto_sprite($Sprite::Player);
+        }
+    }
+}

@@ -1,0 +1,22 @@
+[package]
+name = "claw"
+version = "1.0.0-dev"
+authors = ["BD103"]
+edition = "2021"
+description = ""
+
+[dependencies]
+claw_lex = { path = "crates/claw_lex" }
+claw_parse = { path = "crates/claw_parse" }
+claw_schema = { path = "crates/claw_schema" }
+claw_stdlib = { path = "crates/claw_stdlib" }
+
+[workspace]
+members = [
+    "crates/claw_driver",
+    "crates/claw_lex",
+    "crates/claw_parse",
+    "crates/claw_schema",
+    "crates/claw_stdlib",
+    "crates/claw_verify",
+]
