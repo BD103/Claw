@@ -1,7 +1,7 @@
 use crate::{ArgType, BlockType, Module};
 
 /// Exposes blocks for manipulating the look of sprites and backdrops.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Looks {
     SayFor,
     Say,
@@ -34,7 +34,7 @@ pub enum Looks {
 }
 
 impl Module for Looks {
-    fn get_from<'a>(name: &'a str) -> Option<Self> {
+    fn get_from(name: &str) -> Option<Self> {
         Some(match name {
             "say_for" => Self::SayFor,
             "say" => Self::Say,

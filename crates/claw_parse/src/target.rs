@@ -1,22 +1,11 @@
 use std::ops::{Deref, DerefMut};
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Target {
     pub variables: Vec<String>,
     pub lists: Vec<String>,
     pub events: Vec<String>,
     pub functions: Vec<()>,
-}
-
-impl Default for Target {
-    fn default() -> Self {
-        Target {
-            variables: Vec::new(),
-            lists: Vec::new(),
-            events: Vec::new(),
-            functions: Vec::new(),
-        }
-    }
 }
 
 #[derive(Debug)]
@@ -49,20 +38,11 @@ impl DerefMut for Sprite {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Default)]
 pub struct Stage {
     pub sprites: Vec<Sprite>,
 
     target: Target,
-}
-
-impl Default for Stage {
-    fn default() -> Self {
-        Stage {
-            sprites: Vec::new(),
-            target: Target::default(),
-        }
-    }
 }
 
 impl Deref for Stage {

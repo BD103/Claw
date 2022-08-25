@@ -40,10 +40,7 @@ pub fn is_whitespace(c: char) -> bool {
 
 fn tokenize_string<I: Iterator<Item = char>>(it: &mut Cursor<I>) -> LexResult<Token> {
     fn is_next_newline<I: Iterator<Item = char>>(it: &mut Cursor<I>) -> bool {
-        match it.peek() {
-            Some(&'\n') => true,
-            _ => false,
-        }
+        matches!(it.peek(), Some(&'\n'))
     }
 
     let mut text = String::new();

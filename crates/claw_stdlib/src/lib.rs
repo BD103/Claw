@@ -5,10 +5,10 @@ mod motion;
 // mod sound;
 mod events;
 
-pub use self::{looks::Looks, motion::Motion, events::Events};
+pub use self::{events::Events, looks::Looks, motion::Motion};
 
 /// Represents what kind of block it is.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BlockType {
     /// Does not return anything. This is the default.
     Block,
@@ -29,7 +29,7 @@ impl Default for BlockType {
 }
 
 /// Represents an argument to a block.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ArgType {
     /// A string.
     String,
@@ -68,9 +68,9 @@ pub enum ArgType {
 /// Represents a module in the Scratch standard library.
 ///
 /// This is meant to be implemented on an enum.
-pub trait Module: Clone + Copy + PartialEq {
+pub trait Module: Clone + Copy + PartialEq + Eq {
     /// Returns [`Some`] item for a block's name. If the block does not exist, returns [`None`].
-    fn get_from<'a>(name: &'a str) -> Option<Self>;
+    fn get_from(name: &str) -> Option<Self>;
 
     /// Returns the [`BlockType`] of a block.
     fn get_type(&self) -> BlockType;

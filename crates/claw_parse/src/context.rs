@@ -1,19 +1,11 @@
 use std::fmt;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
 pub struct Context {
     pub scope: Scope,
 }
 
-impl Default for Context {
-    fn default() -> Self {
-        Context {
-            scope: Scope::default(),
-        }
-    }
-}
-
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Scope {
     Stage,
     Sprite(String),
