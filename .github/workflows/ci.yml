@@ -31,6 +31,9 @@ jobs:
           toolchain: stable
           override: true
 
+      - name: Clean target
+        run: cargo clean
+
       - name: Build and run tests
         run: cargo test --workspace
         env:
@@ -56,6 +59,9 @@ jobs:
           toolchain: stable
           components: rustfmt, clippy
           override: true
+      
+      - name: Clean target
+        run: cargo clean
       
       - name: Rustfmt
         run: cargo fmt --all --check
