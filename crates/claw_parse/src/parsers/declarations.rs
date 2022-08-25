@@ -26,14 +26,14 @@ pub fn parse_declaration<I: Iterator<Item = Token>>(
             ensure_next_token!(
                 it,
                 Token::BracketOpen,
-                Token::IdentOrKeyword(declare_type.clone()),
+                Token::IdentOrKeyword(declare_type),
                 {},
             );
 
             // Store the previous token for error messages
             let mut last = Token::BracketOpen;
 
-            while let Some(t) = it.next() {
+            for t in it.by_ref() {
                 // Needs to clone for 'last' to work
                 match t.clone() {
                     // Add value to declaration type

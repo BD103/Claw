@@ -1,4 +1,3 @@
-use claw;
 use std::{env, fs, io, path::Path};
 
 fn load_file(path: &Path) -> io::Result<String> {

@@ -1,6 +1,5 @@
 use anyhow::anyhow;
 use jsonschema::{JSONSchema, SchemaResolver, SchemaResolverError};
-use serde_json;
 use std::{env, fs, io, path::Path, sync::Arc};
 use url::Url;
 

@@ -1,7 +1,7 @@
 use crate::{ArgType, BlockType, Module};
 
 /// Exposes blocks for manipulating the position of sprites.
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Motion {
     MoveSteps,
     TurnLeft,
@@ -30,7 +30,7 @@ pub enum Motion {
 }
 
 impl Module for Motion {
-    fn get_from<'a>(name: &'a str) -> Option<Self> {
+    fn get_from(name: &str) -> Option<Self> {
         Some(match name {
             "move_steps" => Self::MoveSteps,
             "turn_left" => Self::TurnLeft,

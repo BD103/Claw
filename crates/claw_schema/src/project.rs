@@ -1,23 +1,12 @@
 use super::Target;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Default)]
 pub struct Project {
     pub targets: Vec<Target>,
     pub monitors: Vec<()>,
     pub extensions: Vec<()>,
     pub meta: Meta,
-}
-
-impl Default for Project {
-    fn default() -> Self {
-        Project {
-            targets: Vec::new(),
-            monitors: Vec::new(),
-            extensions: Vec::new(),
-            meta: Meta::default(),
-        }
-    }
 }
 
 #[derive(Serialize, Deserialize, Debug)]
