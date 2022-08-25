@@ -1,12 +1,12 @@
 use crate::{ArgType, BlockType, Module};
 
-#[derive(Clone, Copy, Debug, PartialEq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Events {
     OnStart,
     OnKeyPress,
     OnSpriteClick,
     OnBackdropSwitch,
-    
+
     OnGreaterThan,
 
     OnEvent,
@@ -15,7 +15,7 @@ pub enum Events {
 }
 
 impl Module for Events {
-    fn get_from<'a>(name: &'a str) -> Option<Self> {
+    fn get_from(name: &str) -> Option<Self> {
         Some(match name {
             "on_start" => Self::OnStart,
             "on_key_press" => Self::OnKeyPress,
@@ -34,7 +34,9 @@ impl Module for Events {
 
     fn get_type(&self) -> BlockType {
         match self {
-            Self::OnStart | Self::OnKeyPress | Self::OnSpriteClick | Self::OnBackdropSwitch => BlockType::Hat,
+            Self::OnStart | Self::OnKeyPress | Self::OnSpriteClick | Self::OnBackdropSwitch => {
+                BlockType::Hat
+            }
 
             Self::OnGreaterThan => BlockType::Hat,
 

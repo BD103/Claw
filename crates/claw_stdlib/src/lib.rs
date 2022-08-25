@@ -5,7 +5,7 @@ mod motion;
 // mod sound;
 mod events;
 
-pub use self::{looks::Looks, motion::Motion, events::Events};
+pub use self::{events::Events, looks::Looks, motion::Motion};
 
 /// Represents what kind of block it is.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
