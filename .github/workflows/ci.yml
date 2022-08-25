@@ -24,7 +24,6 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            target/
           key: ${{ runner.os }}-cargo-build-stable-${{ hashFiles('**/Cargo.toml') }}
 
       - uses: actions-rs/toolchain@v1
@@ -50,7 +49,6 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            target/
           key: ${{ runner.os }}-cargo-lint-stable-${{ hashFiles('**/Cargo.toml') }}
 
       - uses: actions-rs/toolchain@v1
