@@ -2,14 +2,18 @@
 
 mod looks;
 mod motion;
+// mod sound;
+mod events;
 
-pub use self::{looks::Looks, motion::Motion};
+pub use self::{looks::Looks, motion::Motion, events::Events};
 
 /// Represents what kind of block it is.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum BlockType {
     /// Does not return anything. This is the default.
     Block,
+    /// Represents an event hat block.
+    Hat,
     /// Returns a number.
     Number,
     /// Returns a string.
@@ -42,8 +46,17 @@ pub enum ArgType {
     /// An enum of all costumes in the current sprite.
     Costume,
 
+    /// An enum of all backdrops in the project.
+    Backdrop,
+
     /// An enum of all possible visual effects to apply to the current sprite.
     Effect,
+
+    /// An enum of all keyboard keys.
+    KeyCode,
+
+    /// An enum of all defined broadcasts.
+    Event,
 
     /// Represents an unsupported argument that makes the block impossible to use.
     ///
