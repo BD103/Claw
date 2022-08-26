@@ -14,9 +14,9 @@ fn main() -> anyhow::Result<()> {
     };
 
     let tokens = claw::lex::tokenize(script)?;
-    // let parsed = claw::parse::parse(tokens)?;
+    let parsed = claw::parse::parse(tokens)?;
 
-    println!("{:?}", tokens);
+    println!("{:?}", parsed);
 
     // Generate AST
     // Load assets?
