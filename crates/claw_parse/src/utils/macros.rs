@@ -20,13 +20,13 @@ macro_rules! ensure_next_token {
                 // Run function
                 $func
             } else {
-                return ::std::result::Result::Err(crate::ParseError::InvalidTokenAfter(
+                return ::std::result::Result::Err($crate::ParseError::InvalidTokenAfter(
                     __t,
                     $token_from,
                 ));
             }
         } else {
-            return ::std::result::Result::Err(crate::ParseError::NoTokenAfter($token_from));
+            return ::std::result::Result::Err($crate::ParseError::NoTokenAfter($token_from));
         }
     };
     // Allows for comma at the end
