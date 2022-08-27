@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Span {
     /// Inclusive.
     pub start: usize,
@@ -6,7 +6,14 @@ pub struct Span {
     pub end: usize,
 }
 
-#[derive(Debug)]
+impl Span {
+    #[inline]
+    pub fn new(start: usize, end: usize) -> Self {
+        Span { start, end }
+    }
+}
+
+#[derive(Debug, Clone)]
 pub struct SpanDebug {
     pub start_line: usize,
     pub end_line: usize,

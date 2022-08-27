@@ -1,4 +1,4 @@
-use crate::SpanDebug;
+use crate::{Span, SpanDebug};
 use std::{error::Error, fmt};
 
 pub type LexResult<T> = Result<T, LexError>;
@@ -6,6 +6,15 @@ pub type LexResult<T> = Result<T, LexError>;
 pub struct LexError {
     pub type_: ErrorType,
     pub span: SpanDebug,
+}
+
+impl LexError {
+    pub fn new(type_: ErrorType, span: &Span, script: &str) -> Self {
+        LexError {
+            type_,
+            span: SpanDebug::from_span(span, script),
+        }
+    }
 }
 
 impl fmt::Display for LexError {
@@ -41,4 +50,21 @@ impl Error for LexError {}
 pub enum ErrorType {
     #[error("Unknown token {0:?} found.")]
     UnknownToken(char),
+
+    #[error("The given script is empty.")]
+    EmptyScript,
+}
+
+/// Creates a [`LexError`] for when trying to tokenize an empty script.
+///
+/// This is here because [`SpanDebug::from_span`] will return an error for an empty screen.
+pub(crate) fn empty_script_error() -> LexError {
+    LexError {
+        type_: ErrorType::EmptyScript,
+        span: SpanDebug {
+            start_line: 0,
+            end_line: 0,
+            text: String::new(),
+        },
+    }
 }

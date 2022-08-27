@@ -1,5 +1,13 @@
+mod core;
+mod cursor;
 mod error;
 mod span;
+mod token;
 
-pub use error::{ErrorType, LexError, LexResult};
-pub use span::{Span, SpanDebug};
+pub use self::{
+    core::tokenize,
+    cursor::Cursor,
+    error::{ErrorType, LexError, LexResult},
+    span::{Span, SpanDebug},
+    token::{Token, TokenType},
+};
