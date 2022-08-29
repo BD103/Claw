@@ -3,6 +3,7 @@ mod cursor;
 mod error;
 mod span;
 mod token;
+mod utils;
 
 pub use self::{
     core::tokenize,
@@ -10,4 +11,5 @@ pub use self::{
     error::{ErrorType, LexError, LexResult},
     span::{Span, SpanDebug},
     token::{Token, TokenType},
+    utils::is_whitespace,
 };

@@ -5,7 +5,7 @@ fn load_file(path: &Path) -> io::Result<String> {
 }
 
 fn main() -> anyhow::Result<()> {
-    let _script = if let Some(filename) = env::args().nth(1) {
+    let script = if let Some(filename) = env::args().nth(1) {
         let path = Path::new(&filename);
         load_file(path).expect("Error loading file.")
     } else {
@@ -13,10 +13,10 @@ fn main() -> anyhow::Result<()> {
         load_file(path).expect("Error loading file.")
     };
 
-    // let tokens = claw::lex::tokenize(script)?;
+    let tokens = claw::lex::tokenize(script)?;
     // let parsed = claw::parse::parse(tokens)?;
 
-    // println!("{:?}", parsed);
+    println!("{:#?}", tokens);
 
     // Generate AST
     // Load assets?
