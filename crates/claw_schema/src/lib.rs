@@ -1,7 +1,7 @@
 #![cfg_attr(debug_assertions, allow(unused))]
 
+mod block;
 mod project;
 mod target;
-mod block;
 
-pub use self::{project::*, target::*, block::*};
+pub use self::{block::*, project::*, target::*};

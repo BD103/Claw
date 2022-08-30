@@ -30,7 +30,11 @@ pub fn tokenize(script: String) -> LexResult<Vec<Token>> {
 
                     TokenType::DoubleColon
                 } else {
-                    return Err(LexError::new(ErrorType::SingleColon, &Span::new(start, end), &script));
+                    return Err(LexError::new(
+                        ErrorType::SingleColon,
+                        &Span::new(start, end),
+                        &script,
+                    ));
                 }
             }
 
