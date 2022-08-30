@@ -53,6 +53,9 @@ pub enum ErrorType {
 
     #[error("The given script is empty.")]
     EmptyScript,
+
+    #[error("Only found a single colon, expected two. ('::')")]
+    SingleColon,
 }
 
 /// Creates a [`LexError`] for when trying to tokenize an empty script.

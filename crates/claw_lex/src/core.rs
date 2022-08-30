@@ -12,6 +12,28 @@ pub fn tokenize(script: String) -> LexResult<Vec<Token>> {
         let mut end = start + 1;
 
         let token_type = match c {
+            '(' => TokenType::ParanOpen,
+            ')' => TokenType::ParanClose,
+            '{' => TokenType::BracketOpen,
+            '}' => TokenType::BracketClose,
+
+            '@' => TokenType::AtSign,
+            '$' => TokenType::EnumSign,
+            ',' => TokenType::Comma,
+            ';' => TokenType::Semi,
+
+            ':' => {
+                end += 1;
+
+                if let Some(&(_, ':')) = it.peek() {
+                    it.next();
+
+                    TokenType::DoubleColon
+                } else {
+                    return Err(LexError::new(ErrorType::SingleColon, &Span::new(start, end), &script));
+                }
+            }
+
             _ if c.is_ascii_alphabetic() => {
                 while let Some(&(new_end, c)) = it.peek() {
                     end = new_end;
