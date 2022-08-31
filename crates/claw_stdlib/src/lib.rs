@@ -1,32 +1,6 @@
 //! Represents blocks included with the Scratch standard library.
 
-mod looks;
-mod motion;
-// mod sound;
 mod events;
-
-pub use self::{events::Events, looks::Looks, motion::Motion};
-
-/// Represents what kind of block it is.
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum BlockType {
-    /// Does not return anything. This is the default.
-    Block,
-    /// Represents an event hat block.
-    Hat,
-    /// Returns a number.
-    Number,
-    /// Returns a string.
-    String,
-    /// Returns a boolean.
-    Boolean,
-}
-
-impl Default for BlockType {
-    fn default() -> Self {
-        Self::Block
-    }
-}
 
 /// Represents an argument to a block.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -40,23 +14,8 @@ pub enum ArgType {
     /// A boolean.
     Boolean,
 
-    /// An enum of all sprites in the project.
-    Sprite,
-
-    /// An enum of all costumes in the current sprite.
-    Costume,
-
-    /// An enum of all backdrops in the project.
-    Backdrop,
-
-    /// An enum of all possible visual effects to apply to the current sprite.
-    Effect,
-
-    /// An enum of all keyboard keys.
-    KeyCode,
-
-    /// An enum of all defined broadcasts.
-    Event,
+    /// An enum.
+    Enum { kind: EnumKind },
 
     /// Represents an unsupported argument that makes the block impossible to use.
     ///
@@ -65,16 +24,21 @@ pub enum ArgType {
     Unsupported,
 }
 
-/// Represents a module in the Scratch standard library.
-///
-/// This is meant to be implemented on an enum.
-pub trait Module: Clone + Copy + PartialEq + Eq {
-    /// Returns [`Some`] item for a block's name. If the block does not exist, returns [`None`].
-    fn get_from(name: &str) -> Option<Self>;
-
-    /// Returns the [`BlockType`] of a block.
-    fn get_type(&self) -> BlockType;
-
-    /// Returns all [`ArgType`]s a block requires.
-    fn get_args(&self) -> &[ArgType];
+/// Represents different enums that can be accessed.
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum EnumKind {
+    /// Accesses the local (sprite) and global (stage) variables.
+    Variable,
 }
+
+pub trait Module: Clone + Copy {
+    /// Returns variant from given identifier.
+    fn from_ident(ident: &str) -> Option<Self>;
+
+    /// Returns the opcode of the current variant.
+    fn opcode(&self) -> &'static str;
+}
+
+pub trait BlockModule: Module {}
+
+pub trait EventModule: Module {}

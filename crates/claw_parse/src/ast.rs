@@ -1,3 +1,5 @@
+pub use claw_stdlib::EnumKind;
+
 /// Represents a stage or sprite.
 pub struct Target<'a> {
     /// The name of the target. If [`None`] then it is the stage, else it is a sprite.
@@ -60,12 +62,6 @@ pub enum Argument<'a> {
         /// The variant of the enum to access.
         variant: &'a str,
     },
-}
-
-/// Represents different enums that can be accessed.
-pub enum EnumKind {
-    /// Accesses the local (sprite) and global (stage) variables.
-    Variable,
 }
 
 /// Represents an event that can trigger a function.
