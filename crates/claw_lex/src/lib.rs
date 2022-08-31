@@ -1,15 +1,19 @@
 mod core;
-mod cursor;
-mod error;
-mod span;
 mod token;
-mod utils;
 
 pub use self::{
-    core::tokenize,
-    cursor::Cursor,
-    error::{ErrorType, LexError, LexResult},
-    span::{Span, SpanDebug},
-    token::{Token, TokenType},
-    utils::is_whitespace,
+    core::Lexer,
+    token::{Token, TokenKind},
 };
+
+pub fn tokenize(script: &str) -> impl Iterator<Item = Token> + '_ {
+    let mut lexer = Lexer::new(script);
+
+    std::iter::from_fn(move || {
+        if lexer.eof() {
+            None
+        } else {
+            Some(lexer.tokenize_one())
+        }
+    })
+}

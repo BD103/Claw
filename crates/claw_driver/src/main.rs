@@ -13,13 +13,10 @@ fn main() -> anyhow::Result<()> {
         load_file(path).expect("Error loading file.")
     };
 
-    let tokens = claw::lex::tokenize(script)?;
+    let tokens = claw::lex::tokenize(&script);
     // let parsed = claw::parse::parse(tokens)?;
 
-    println!("{:#?}", tokens);
-
     // Generate AST
-    // Load assets?
     // Save to sb3 file
 
     Ok(())
