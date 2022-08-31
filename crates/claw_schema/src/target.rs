@@ -8,19 +8,8 @@ pub struct Target {
     pub is_stage: bool,
     pub name: String,
     pub variables: HashMap<String, (String, i64)>,
-    // lists: HashMap<String, (String, Vec<i64>)>, // Change list type to enum?
-    // broadcasts: HashMap<String, String>,
     pub blocks: HashMap<String, Block>,
-    // comments: (),
-    // current_costume: usize,
     pub costumes: Vec<()>,
-    // sounds: Vec<()>,
-    // volume: usize, // 0-100?
-    // layer_order: usize,
-    // tempo: usize,
-    // video_transparency: usize,
-    // video_state: String,
-    // text_to_speech_language: (),
 }
 
 impl Target {
