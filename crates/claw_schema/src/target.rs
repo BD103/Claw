@@ -1,4 +1,4 @@
-use crate::Block;
+use crate::{Block, Costume};
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
@@ -9,7 +9,8 @@ pub struct Target {
     pub name: String,
     pub variables: HashMap<String, (String, i64)>,
     pub blocks: HashMap<String, Block>,
-    pub costumes: Vec<()>,
+    pub costumes: Vec<Costume>,
+    pub sounds: Vec<()>,
 }
 
 impl Target {
@@ -20,6 +21,7 @@ impl Target {
             variables: HashMap::new(),
             blocks: HashMap::new(),
             costumes: Vec::new(),
+            sounds: Vec::new(),
         }
     }
 
