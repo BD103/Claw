@@ -1,49 +1,66 @@
 pub use claw_stdlib::EnumKind;
 
 /// Represents a stage or sprite.
-pub struct Target<'a> {
+pub struct Target {
     /// The name of the target. If [`None`] then it is the stage, else it is a sprite.
-    name: Option<&'a str>,
+    pub name: Option<String>,
 
     /// A list of [`Function`]s within the target.
-    functions: Vec<Function<'a>>,
+    pub functions: Vec<Function>,
 
     /// A list of variables within the target.
-    variables: Vec<&'a str>,
+    pub variables: Vec<String>,
+}
+
+impl Target {
+    pub fn new_sprite(name: String) -> Self {
+        Target {
+            name: Some(name),
+            ..Self::new_stage()
+        }
+    }
+
+    pub fn new_stage() -> Self {
+        Target {
+            name: None,
+            functions: Vec::new(),
+            variables: Vec::new(),
+        }
+    }
 }
 
 /// Represents a single function of a [`Target`].
-pub struct Function<'a> {
+pub struct Function {
     /// The name of the function.
-    name: &'a str,
+    pub name: String,
 
     /// A list of events that trigger this function
-    events: Vec<Event>,
+    pub events: Vec<Event>,
 
     /// A list of the blocks this function executes.
-    blocks: Vec<Block<'a>>,
+    pub blocks: Vec<Block>,
 }
 
 /// Represents a single instruction to be executed in a function.
-pub struct Block<'a> {
+pub struct Block {
     /// The module to find the block.
-    module: &'a str,
+    pub module: String,
 
     /// The name of the block.
-    name: &'a str,
+    pub name: String,
 
     /// A list of arguments to be passed to the block.
     ///
     /// # Note
     ///
     /// This is currently a slice, but may change in the future.
-    arguments: &'a [Argument<'a>],
+    pub arguments: Vec<Argument>,
 }
 
 /// Represents a parameter for a [`Block`], [`Function`], etc.
-pub enum Argument<'a> {
+pub enum Argument {
     /// A text literal, e.g. `"Hello, world!"`.
-    Text(&'a str),
+    Text(String),
 
     /// An integer literal, e.g. `8`.
     Integer(u64),
@@ -60,7 +77,7 @@ pub enum Argument<'a> {
         kind: EnumKind,
 
         /// The variant of the enum to access.
-        variant: &'a str,
+        variant: String,
     },
 }
 

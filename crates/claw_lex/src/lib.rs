@@ -1,19 +1,50 @@
-mod core;
-mod token;
+// Re-export Lexer so claw_parse does not need to depend on Logos.
+pub use logos::Lexer;
 
-pub use self::{
-    core::Lexer,
-    token::{Token, TokenKind},
-};
+use logos::Logos;
 
-pub fn tokenize(script: &str) -> impl Iterator<Item = Token> + '_ {
-    let mut lexer = Lexer::new(script);
+/// A token in a script.
+#[derive(Logos, Debug, PartialEq)]
+pub enum Token {
+    // a-z with support and numbers and _ after first char.
+    #[regex("[a-zA-Z_][a-zA-Z0-9_]*")]
+    Ident,
 
-    std::iter::from_fn(move || {
-        if lexer.eof() {
-            None
-        } else {
-            Some(lexer.tokenize_one())
-        }
-    })
+    // Any number with optional decimal point and numbers after.
+    #[regex(r"[0-9]+(\.[0-9]*)?")]
+    NumberLiteral,
+    // Any non-newline within quotes.
+    #[regex(r#""[^\n]*""#)]
+    TextLiteral,
+
+    #[token("(")]
+    ParenOpen,
+    #[token(")")]
+    ParenClose,
+    #[token("{")]
+    BraceOpen,
+    #[token("}")]
+    BraceClose,
+
+    #[token("@")]
+    At,
+    #[token("$")]
+    Dollar,
+    #[token(",")]
+    Comma,
+    #[token("::")]
+    DoubleColon,
+    #[token(";")]
+    Semi,
+
+    // Handle errors
+    #[error]
+    // Skip whitespace
+    #[regex(r"[ \t\n\f]+", logos::skip)]
+    Error,
+}
+
+/// Tokenizes a script into a series of tokens.
+pub fn tokenize(script: &str) -> Lexer<Token> {
+    Token::lexer(script)
 }
