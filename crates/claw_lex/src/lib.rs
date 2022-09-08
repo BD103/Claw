@@ -1,4 +1,3 @@
-// Re-export Lexer so claw_parse does not need to depend on Logos.
 pub use logos::Lexer;
 
 use logos::Logos;

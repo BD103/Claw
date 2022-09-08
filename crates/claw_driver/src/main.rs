@@ -14,7 +14,7 @@ fn main() -> anyhow::Result<()> {
     };
 
     let tokens = claw::lex::tokenize(&script);
-    let parsed = claw::parse::parse(tokens);
+    let _parsed = claw::parse::parse(tokens);
 
     // Generate AST
     // Save to sb3 file
