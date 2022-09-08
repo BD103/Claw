@@ -16,6 +16,7 @@ members = [
     "crates/claw_driver",
     "crates/claw_lex",
     "crates/claw_parse",
+    "crates/claw_ast",
     "crates/claw_schema",
     "crates/claw_stdlib",
     "crates/claw_verify",
