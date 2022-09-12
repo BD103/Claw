@@ -1,0 +1,3 @@
+fn start() {
+    motion::goto(0, 0);
+}

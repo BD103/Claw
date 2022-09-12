@@ -4,6 +4,4 @@ version = "1.0.0-dev"
 edition = "2021"
 
 [dependencies]
-claw_lex = { path = "../claw_lex" }
-claw_stdlib = { path = "../claw_stdlib" }
-thiserror = "1.0.32"
+chumsky = "0.8.0"

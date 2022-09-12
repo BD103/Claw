@@ -13,9 +13,6 @@ fn main() -> anyhow::Result<()> {
         load_file(path).expect("Error loading file.")
     };
 
-    let tokens = claw::lex::tokenize(&script);
-    let _parsed = claw::parse::parse(tokens);
-
     // Generate AST
     // Save to sb3 file
 
