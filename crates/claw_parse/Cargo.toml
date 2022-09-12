@@ -4,4 +4,5 @@ version = "1.0.0-dev"
 edition = "2021"
 
 [dependencies]
+ariadne = "0.1.5"
 chumsky = "0.8.0"
