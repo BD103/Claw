@@ -7,7 +7,7 @@ pub use self::{declare::*, expr::*, statement::*};
 use crate::ast::*;
 use chumsky::prelude::*;
 
-pub fn create_parser() -> impl Parser<char, Vec<Declaration>, Error = Simple<char>> {
+pub fn create_parser() -> impl Parser<char, AST, Error = Simple<char>> {
     let comment = just("//").then(take_until(just('\n'))).padded().ignored();
 
     create_func()
