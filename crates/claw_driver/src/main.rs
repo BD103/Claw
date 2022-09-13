@@ -24,7 +24,9 @@ fn main() -> anyhow::Result<()> {
         }
     };
 
-    dbg!(ast);
+    let ir = claw::ir::create_ir(ast);
+
+    dbg!(ir);
 
     // Save to sb3 file
 
