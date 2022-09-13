@@ -1,7 +1,10 @@
 [package]
 name = "claw_verify"
-version = "0.1.0"
+version = "1.0.0"
+authors = ["BD103"]
 edition = "2021"
+description = "Command-line tool that verifies a Scratch project.json is valid."
+repository = "https://github.com/BD103/Claw"
 
 [dependencies]
 claw = { path = "../../" }

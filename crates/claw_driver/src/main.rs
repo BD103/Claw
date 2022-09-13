@@ -13,13 +13,19 @@ fn main() -> anyhow::Result<()> {
         load_file(path).expect("Error loading file.")
     };
 
-    let tokens = claw::lex::tokenize(script)?;
-    let parsed = claw::parse::parse(tokens)?;
-
-    println!("{:?}", parsed);
-
     // Generate AST
-    // Load assets?
+    let ast = match claw::parse::parse(script.clone()) {
+        Ok(ast) => ast,
+        Err(report) => {
+            report
+                .eprint(claw::parse::get_source(script))
+                .expect("Error writing to Stderr, please file a bug report!");
+            std::process::exit(1);
+        }
+    };
+
+    dbg!(ast);
+
     // Save to sb3 file
 
     Ok(())

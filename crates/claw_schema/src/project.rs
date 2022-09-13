@@ -2,6 +2,7 @@ use super::Target;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Default)]
+#[serde(rename_all = "camelCase")]
 pub struct Project {
     pub targets: Vec<Target>,
     pub monitors: Vec<()>,
@@ -10,6 +11,7 @@ pub struct Project {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct Meta {
     pub semver: String,
     pub vm: String,
