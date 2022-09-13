@@ -6,7 +6,7 @@ edition = "2021"
 
 [dependencies]
 claw_parse = { path = "crates/claw_parse" }
-claw_ibt = { path = "crates/claw_ibt" }
+claw_ir = { path = "crates/claw_ir" }
 claw_schema = { path = "crates/claw_schema" }
 claw_stdlib = { path = "crates/claw_stdlib" }
 
@@ -14,7 +14,7 @@ claw_stdlib = { path = "crates/claw_stdlib" }
 members = [
     "crates/claw_driver",
     "crates/claw_parse",
-    "crates/claw_ibt",
+    "crates/claw_ir",
     "crates/claw_schema",
     "crates/claw_stdlib",
     "crates/claw_verify",

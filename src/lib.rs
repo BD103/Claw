@@ -5,9 +5,9 @@ pub mod parse {
     pub use claw_parse::*;
 }
 
-// Re-imported from [`claw_ibt`].
-pub mod ibt {
-    pub use claw_ibt::*;
+// Re-imported from [`claw_ir`].
+pub mod ir {
+    pub use claw_ir::*;
 }
 
 /// Re-imported from [`claw_schema`].
