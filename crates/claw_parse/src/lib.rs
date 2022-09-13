@@ -1,10 +1,12 @@
 pub mod ast;
-pub mod parser;
 mod error;
+pub mod parser;
 
-pub use crate::ast::AST;
-pub use crate::error::ParseError;
+use chumsky::Parser;
+
+pub use crate::{ast::AST, error::ParseError, parser::create_parser};
 
 pub fn parse(script: String) -> AST {
-    todo!()
+    let parser = create_parser();
+    parser.parse(script).unwrap()
 }

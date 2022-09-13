@@ -14,7 +14,9 @@ fn main() -> anyhow::Result<()> {
     };
 
     // Generate AST
-    let _ast = claw::parse::parse(script);
+    let ast = claw::parse::parse(script);
+
+    dbg!("{:#?}", ast);
 
     // Save to sb3 file
 
