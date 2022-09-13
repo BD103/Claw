@@ -13,6 +13,7 @@ claw_stdlib = { path = "crates/claw_stdlib" }
 members = [
     "crates/claw_driver",
     "crates/claw_parse",
+    "crates/claw_ibt",
     "crates/claw_schema",
     "crates/claw_stdlib",
     "crates/claw_verify",
