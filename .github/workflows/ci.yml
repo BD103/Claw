@@ -4,12 +4,16 @@ on:
   pull_request:
   push:
     branches: ["main"]
+  workflow_dispatch:
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   test:
+    # Don't run on draft PRs
+    if: github.event.pull_request.draft == false
+
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -39,6 +43,8 @@ jobs:
           RUSTFLAGS: "-C debuginfo=0 -D warnings"
 
   lints:
+    if: github.event.pull_request.draft == false
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
