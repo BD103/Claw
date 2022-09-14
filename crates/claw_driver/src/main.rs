@@ -24,7 +24,7 @@ fn main() -> anyhow::Result<()> {
         }
     };
 
-    let ir = claw::ir::create_ir(ast);
+    let ir = claw::ir::create_hir(ast);
 
     dbg!(ir);
 
