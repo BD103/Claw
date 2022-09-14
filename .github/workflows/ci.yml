@@ -10,6 +10,7 @@ env:
 
 jobs:
   test:
+    # Don't run on draft PRs
     if: ! github.event.pull_request.draft
 
     strategy:
