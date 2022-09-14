@@ -14,11 +14,11 @@ fn main() -> anyhow::Result<()> {
     };
 
     // Generate AST
-    let ast = match claw::parse::parse(script.clone()) {
+    let ast = match claw::parse::parse(&script) {
         Ok(ast) => ast,
         Err(report) => {
             report
-                .eprint(claw::parse::get_source(script))
+                .eprint(claw::parse::get_source(&script))
                 .expect("Error writing to Stderr, please file a bug report!");
             std::process::exit(1);
         }

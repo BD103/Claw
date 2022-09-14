@@ -11,7 +11,7 @@ pub use crate::{
     parser::create_parser,
 };
 
-pub fn parse(script: String) -> Result<AST, Report> {
+pub fn parse(script: &str) -> Result<AST, Report> {
     let parser = create_parser();
     build_report(parser.parse(script))
 }
