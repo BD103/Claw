@@ -5,3 +5,9 @@ edition = "2021"
 
 [dependencies]
 claw_parse = { path = "../claw_parse" }
+claw_stdlib = { path = "../claw_stdlib" }
+claw_schema = { path = "../claw_schema", optional = true }
+
+[features]
+default = ["schema"]
+schema = ["dep:claw_schema"]

@@ -1,10 +1,23 @@
-mod hir;
+// TODO: Fix error handling
 
-pub use crate::hir::HIR;
+pub mod hir;
+pub mod lir;
+mod hooks;
+
+#[cfg(feature = "schema")]
+mod schema;
+
+#[cfg(feature = "schema")]
+pub use schema::create_schema;
+
+pub use crate::{hir::HIR, lir::LIR};
 
 use claw_parse::AST;
 
 pub fn create_hir(ast: AST) -> HIR {
-    // TODO: don't unwrap here
     HIR::try_from(ast).unwrap()
+}
+
+pub fn create_lir(hir: HIR) -> LIR {
+    LIR::try_from(hir).unwrap()
 }

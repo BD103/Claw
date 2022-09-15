@@ -1,3 +1,18 @@
+declare Var {
+    Score,
+}
+
+@on_start
 fn start() {
-    motion::goto(0, 0);
+    looks::say("Hello, world!");
+}
+
+sprite Scratch {
+    declare Var {
+        TimesMeowed,
+    }
+
+    fn poof() {
+        looks::hide();
+    }
 }

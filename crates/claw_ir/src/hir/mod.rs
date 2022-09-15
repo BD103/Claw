@@ -7,7 +7,7 @@ use std::{
 };
 
 /// The intermediate representation of a Claw script.
-#[derive(Debug, Clone)]
+#[derive(Default, Debug, Clone)]
 pub struct HIR {
     pub declarations: HashMap<String, Vec<String>>,
     pub functions: Vec<Func>,
@@ -39,16 +39,6 @@ impl TryFrom<ast::AST> for HIR {
         }
 
         Ok(result)
-    }
-}
-
-impl Default for HIR {
-    fn default() -> Self {
-        HIR {
-            declarations: HashMap::new(),
-            functions: Vec::new(),
-            sprites: Vec::new(),
-        }
     }
 }
 

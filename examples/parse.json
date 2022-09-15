@@ -1,0 +1,24 @@
+{
+  "targets": [
+    {
+      "isStage": true,
+      "name": "Stage",
+      "variables": {
+        "Stage::Score": [
+          "Score",
+          0
+        ]
+      },
+      "blocks": {},
+      "costumes": [],
+      "sounds": []
+    }
+  ],
+  "monitors": [],
+  "extensions": [],
+  "meta": {
+    "semver": "3.0.0",
+    "vm": "1.1.2",
+    "agent": "Claw by BD103 <https://bd103.github.io>"
+  }
+}
