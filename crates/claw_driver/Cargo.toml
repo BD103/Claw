@@ -6,3 +6,6 @@ edition = "2021"
 [dependencies]
 claw = { path = "../../" }
 anyhow = "1.0.62"
+
+[features]
+verify = ["claw/verify"]

@@ -28,5 +28,11 @@ fn main() -> anyhow::Result<()> {
 
     // Save to sb3 file
 
+    #[cfg(feature = "verify")]
+    {
+        // Verify generated serde_json::Value
+        // claw::verify::verify(project_json);
+    }
+
     Ok(())
 }
