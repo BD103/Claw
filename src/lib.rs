@@ -14,3 +14,8 @@ pub mod schema {
 pub mod stdlib {
     pub use claw_stdlib::*;
 }
+
+#[cfg(feature = "verify")]
+pub mod verify {
+    pub use claw_verify::*;
+}

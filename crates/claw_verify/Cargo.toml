@@ -7,8 +7,6 @@ description = "Command-line tool that verifies a Scratch project.json is valid."
 repository = "https://github.com/BD103/Claw"
 
 [dependencies]
-claw = { path = "../../" }
-
 # Error handling
 anyhow = "1.0.62"
 
