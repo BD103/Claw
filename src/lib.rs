@@ -5,6 +5,11 @@ pub mod parse {
     pub use claw_parse::*;
 }
 
+/// Re-imported from [`claw_ir`].
+pub mod ir {
+    pub use claw_ir::*;
+}
+
 /// Re-imported from [`claw_schema`].
 pub mod schema {
     pub use claw_schema::*;
@@ -15,6 +20,7 @@ pub mod stdlib {
     pub use claw_stdlib::*;
 }
 
+/// Re-imported from [`claw_parse`].
 #[cfg(feature = "verify")]
 pub mod verify {
     pub use claw_verify::*;
