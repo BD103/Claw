@@ -1,8 +1,10 @@
-use jsonschema::{JSONSchema, SchemaResolver, SchemaResolverError, error::ValidationErrorKind, paths::JSONPointer};
+use anyhow::anyhow;
+use jsonschema::{
+    error::ValidationErrorKind, paths::JSONPointer, JSONSchema, SchemaResolver, SchemaResolverError,
+};
 use serde_json::Value;
 use std::sync::Arc;
 use url::Url;
-use anyhow::anyhow;
 
 pub const SB3_SCHEMA: &str = include_str!("sb3_schema.json");
 pub const SB3_DEFINITIONS: &str = include_str!("sb3_definitions.json");
@@ -28,9 +30,9 @@ impl SchemaResolver for Sb3Resolver {
 }
 
 /// Returns the compiled [`JSONSchema`] of the project JSON.
-/// 
+///
 /// # Panics
-/// 
+///
 /// Technically this function can panic if the schema is malformed, but the schema is unlikely to change and will be tested with before releasing.
 fn compile_schema() -> JSONSchema {
     // Since the schema never changes, it is safe to unwrap here.
@@ -48,21 +50,14 @@ pub fn verify(project_json: &Value) -> Result<(), Vec<(ValidationErrorKind, JSON
     let schema = compile_schema();
     let res = schema.validate(project_json);
 
-    res.map_err(|e| {
-        e.into_iter()
-            .map(|x| (x.kind, x.instance_path))
-            .collect()
-    })
+    res.map_err(|e| e.into_iter().map(|x| (x.kind, x.instance_path)).collect())
 }
 
 /// Conveniance function that verifies the string form of a project JSON.
-/// 
+///
 /// # Panics
-/// 
+///
 /// This function **will** panic if you give it an invalid JSON string. If you are worried about catching these errors, please use [`verify`] directly.
 pub fn verify_string(project_json: &str) -> Result<(), Vec<(ValidationErrorKind, JSONPointer)>> {
-    verify(
-        &serde_json::from_str(project_json)
-            .expect("Error deserializing project JSON.")
-    )
+    verify(&serde_json::from_str(project_json).expect("Error deserializing project JSON."))
 }
