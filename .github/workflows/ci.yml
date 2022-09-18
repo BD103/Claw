@@ -13,7 +13,6 @@ jobs:
   test:
     # Don't run on draft PRs
     if: github.event.pull_request.draft == false
-
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
@@ -44,7 +43,6 @@ jobs:
 
   lints:
     if: github.event.pull_request.draft == false
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -57,16 +55,23 @@ jobs:
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
             target/
-          key: ${{ runner.os }}-cargo-lint-stable-${{ hashFiles('**/Cargo.toml') }}
+          key: ${{ runner.os }}-cargo-lint-nightly-${{ hashFiles('**/Cargo.toml') }}
 
-      - uses: actions-rs/toolchain@v1
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
         with:
-          toolchain: stable
+          toolchain: nightly
           components: rustfmt, clippy
           override: true
 
-      - name: Rustfmt
-        run: cargo fmt --all --check
-      
       - name: Clippy
-        run: cargo clippy --workspace
+        uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # When all lints are fixed, add -D warnings
+          args: --workspace --all-features -- -W clippy::pedantic -W clippy::nursery -W clippy::cargo
+
+      - name: Rustfmt
+        run: |
+          cat .cargo/rustfmt-nightly.toml >> rustfmt.toml
+          cargo +nightly fmt --all --check

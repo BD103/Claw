@@ -9,7 +9,8 @@ use url::Url;
 pub const SB3_SCHEMA: &str = include_str!("sb3_schema.json");
 pub const SB3_DEFINITIONS: &str = include_str!("sb3_definitions.json");
 
-/// Hacky workaround so that the schema actually works. Most likely this will be re-written in the future.
+/// Hacky workaround so that the schema actually works. Most likely this will be re-written in the
+/// future.
 struct Sb3Resolver {}
 
 impl SchemaResolver for Sb3Resolver {
@@ -33,7 +34,8 @@ impl SchemaResolver for Sb3Resolver {
 ///
 /// # Panics
 ///
-/// Technically this function can panic if the schema is malformed, but the schema is unlikely to change and will be tested with before releasing.
+/// Technically this function can panic if the schema is malformed, but the schema is unlikely to
+/// change and will be tested with before releasing.
 fn compile_schema() -> JSONSchema {
     // Since the schema never changes, it is safe to unwrap here.
     let schema: Value = serde_json::from_str(SB3_SCHEMA).expect("Error deserializing JSON schema.");
@@ -57,7 +59,8 @@ pub fn verify(project_json: &Value) -> Result<(), Vec<(ValidationErrorKind, JSON
 ///
 /// # Panics
 ///
-/// This function **will** panic if you give it an invalid JSON string. If you are worried about catching these errors, please use [`verify`] directly.
+/// This function **will** panic if you give it an invalid JSON string. If you are worried about
+/// catching these errors, please use [`verify`] directly.
 pub fn verify_string(project_json: &str) -> Result<(), Vec<(ValidationErrorKind, JSONPointer)>> {
     verify(&serde_json::from_str(project_json).expect("Error deserializing project JSON."))
 }
