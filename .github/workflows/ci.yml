@@ -69,4 +69,6 @@ jobs:
           args: --workspace --all-features
 
       - name: Rustfmt
-        run: cargo fmt --all --check
+        run: |
+          cat .cargo/rustfmt-nightly.toml >> rustfmt.toml
+          cargo +nightly fmt --all --check
