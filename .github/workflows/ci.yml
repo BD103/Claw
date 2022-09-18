@@ -71,4 +71,4 @@ jobs:
       - name: Rustfmt
         run: |
           cat .cargo/rustfmt-nightly.toml >> rustfmt.toml
-          cargo +nightly fmt --all --check
+          cargo +nightly fmt --all --check -- --color always
