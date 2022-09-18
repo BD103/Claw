@@ -1,9 +1,7 @@
 use_field_init_shorthand = true
 newline_style = "Unix"
 
-# Nightly Rustfmt
-# unstable_features = true
-# imports_granularity = "Crate"
-# wrap_comments = true
-# comment_width = 100
-# normalize_comments = true
+# Claw uses Nightly Rustfmt for style checking.
+# To enable these features, run the following:
+#
+# cat .cargo/rustfmt-nightly.toml >> rustfmt.toml
