@@ -68,7 +68,8 @@ jobs:
         uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          args: --workspace --all-features
+          # When all lints are fixed, add -D warnings
+          args: --workspace --all-features -- -W clippy::pedantic -W clippy::nursery -W clippy::cargo
 
       - name: Rustfmt
         run: |
