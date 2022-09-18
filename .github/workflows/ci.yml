@@ -57,13 +57,15 @@ jobs:
             target/
           key: ${{ runner.os }}-cargo-lint-nightly-${{ hashFiles('**/Cargo.toml') }}
 
-      - uses: actions-rs/toolchain@v1
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
           components: rustfmt, clippy
           override: true
-      
-      - uses: actions-rs/clippy-check@v1
+
+      - name: Clippy
+        uses: actions-rs/clippy-check@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --workspace --all-features
