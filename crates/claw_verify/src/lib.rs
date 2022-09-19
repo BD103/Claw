@@ -1,3 +1,6 @@
+#![doc = include_str!("../README.md")]
+#![deny(missing_docs)]
+
 use anyhow::anyhow;
 use jsonschema::{
     error::ValidationErrorKind, paths::JSONPointer, JSONSchema, SchemaResolver, SchemaResolverError,
@@ -6,7 +9,10 @@ use serde_json::Value;
 use std::sync::Arc;
 use url::Url;
 
+/// The schema that a `project.json` file is checked against.
 pub const SB3_SCHEMA: &str = include_str!("sb3_schema.json");
+
+/// Shared definitions between multiple schemas, though right now just [`SB3_SCHEMA`].
 pub const SB3_DEFINITIONS: &str = include_str!("sb3_definitions.json");
 
 /// Hacky workaround so that the schema actually works. Most likely this will be re-written in the

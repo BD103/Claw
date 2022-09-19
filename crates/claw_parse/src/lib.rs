@@ -1,3 +1,6 @@
+#![doc = include_str!("../README.md")]
+#![deny(missing_docs)]
+
 pub mod ast;
 mod error;
 pub mod parser;
@@ -11,6 +14,11 @@ pub use crate::{
     parser::create_parser,
 };
 
+/// Parses a [`str`] into [`AST`].
+///
+/// # Errors
+///
+/// If `script` is malformed, this will return a [`Report`] from the [`ariadne`] crate.
 pub fn parse(script: &str) -> Result<AST, Report> {
     let parser = create_parser();
     build_report(parser.parse(script))

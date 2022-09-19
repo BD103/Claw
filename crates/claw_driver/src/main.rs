@@ -1,5 +1,8 @@
+#![doc = include_str!("../README.md")]
+
 use std::{env, fs, io, path::Path};
 
+/// Reads the contents of a [`Path`] to a [`String`].
 fn load_file(path: &Path) -> io::Result<String> {
     Ok(String::from_utf8_lossy(&fs::read(path)?).into_owned())
 }

@@ -1,6 +1,9 @@
 use crate::ast::Expression;
 use chumsky::prelude::*;
 
+/// Creates an expression parser.
+///
+/// For an expression reference, see [`ast::Expression`](crate::ast::Expression).
 pub fn create_expression() -> impl Parser<char, Expression, Error = Simple<char>> {
     let number = text::int(10)
         .chain::<char, _, _>(just('.').chain(text::digits(10)).or_not().flatten())
@@ -23,6 +26,10 @@ pub fn create_expression() -> impl Parser<char, Expression, Error = Simple<char>
     number.or(text).or(boolean)
 }
 
+/// Creates a call parser.
+///
+/// A call is defined in [`ast::Expression`](crate::ast::Expression). This is in a separate function
+/// for readability and reusability.
 pub fn create_call() -> impl Parser<char, Expression, Error = Simple<char>> {
     recursive(|call| {
         text::ident()

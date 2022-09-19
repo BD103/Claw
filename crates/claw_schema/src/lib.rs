@@ -1,7 +1,4 @@
-//! A serializable representation of the contents of `project.json`.
-//!
-//! For the main struct, look at [`Project`].
-
+#![doc = include_str!("../README.md")]
 #![cfg_attr(debug_assertions, allow(unused))]
 
 mod block;

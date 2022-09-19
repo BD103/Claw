@@ -2,6 +2,7 @@ use super::create_statement;
 use crate::ast::{Declaration, Statement};
 use chumsky::prelude::*;
 
+/// Creates a function declaration parser.
 pub fn create_func() -> impl Parser<char, Declaration, Error = Simple<char>> {
     fn create_base_func() -> impl Parser<char, (String, Vec<Statement>), Error = Simple<char>> {
         text::keyword("fn")
@@ -32,6 +33,7 @@ pub fn create_func() -> impl Parser<char, Declaration, Error = Simple<char>> {
         }))
 }
 
+/// Creates an enum declaration parser.
 pub fn create_declare() -> impl Parser<char, Declaration, Error = Simple<char>> {
     text::keyword("declare")
         .ignore_then(text::ident().padded())
@@ -45,6 +47,7 @@ pub fn create_declare() -> impl Parser<char, Declaration, Error = Simple<char>> 
         .map(|(kind, items)| Declaration::Declare { kind, items })
 }
 
+/// Creates a sprite declaration parser.
 pub fn create_sprite() -> impl Parser<char, Declaration, Error = Simple<char>> {
     text::keyword("sprite")
         .ignore_then(text::ident().padded())

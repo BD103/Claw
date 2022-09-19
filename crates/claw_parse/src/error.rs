@@ -1,11 +1,19 @@
+//! Contains logic for error handling.
+//!
+//! This is specifically meant to work with the [`ariadne`] crate.
+
 use std::ops::Range;
 
 use crate::AST;
 use ariadne::{Color, Fmt, Label, Report, ReportBuilder, ReportKind, Source};
 use chumsky::error::Simple;
 
+/// Error type returned by the parsers.
 pub type ParseError = Simple<char>;
 
+/// Takes a [`ParseError`] and applies it's contents to an existing [`ReportBuilder`].
+///
+/// This function is used to transform a list of errors into one concise [`Report`].
 fn apply_err(
     report: ReportBuilder<Range<usize>>,
     error: &ParseError,
@@ -78,6 +86,10 @@ fn apply_err(
     }
 }
 
+/// Transforms a result to use [`ariadne`]'s [`Report`].
+///
+/// This function is often used on the result of a parser made with
+/// [`create_parser`](crate::create_parser).
 pub fn build_report(parsed: Result<AST, Vec<ParseError>>) -> Result<AST, Report> {
     match parsed {
         Ok(parsed) => Ok(parsed),
@@ -100,6 +112,9 @@ pub fn build_report(parsed: Result<AST, Vec<ParseError>>) -> Result<AST, Report>
     }
 }
 
+/// Returns the [`Source`] of a string reference.
+///
+/// This function exists so that other crates do not have to directly depend on [`ariadne`].
 pub fn get_source<S: AsRef<str>>(script: S) -> Source {
     Source::from(script)
 }
