@@ -30,10 +30,7 @@ fn apply_err(
                 Label::new(error.span())
                     .with_message(format!(
                         "Must be closed before this {}",
-                        match error.found() {
-                            Some(c) => c.to_string(),
-                            None => "end of file".to_string(),
-                        }
+                        error.found().map_or_else(|| "end of file".to_string(), |c| c.to_string())
                         .fg(Color::Red)
                     ))
                     .with_color(Color::Red),

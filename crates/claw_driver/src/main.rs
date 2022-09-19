@@ -5,13 +5,16 @@ fn load_file(path: &Path) -> io::Result<String> {
 }
 
 fn main() {
-    let script = env::args().nth(1).map_or_else(|| {
-        let path = Path::new("./examples/stage1.claw");
-        load_file(path).expect("Error loading file.")
-    }, |filename| {
-        let path = Path::new(&filename);
-        load_file(path).expect("Error loading file.")
-    });
+    let script = env::args().nth(1).map_or_else(
+        || {
+            let path = Path::new("./examples/stage1.claw");
+            load_file(path).expect("Error loading file.")
+        },
+        |filename| {
+            let path = Path::new(&filename);
+            load_file(path).expect("Error loading file.")
+        },
+    );
 
     // Generate AST
     let ast = match claw::parse::parse(&script) {

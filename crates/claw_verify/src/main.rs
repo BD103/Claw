@@ -1,4 +1,3 @@
-use claw_verify;
 use std::{env, fs, io, path::Path};
 
 fn load_file(path: &Path) -> io::Result<String> {
@@ -6,13 +5,16 @@ fn load_file(path: &Path) -> io::Result<String> {
 }
 
 fn main() {
-    let project_json = if let Some(filename) = env::args().nth(1) {
-        let path = Path::new(&filename);
-        load_file(path).expect("Error loading project.json.")
-    } else {
-        let path = Path::new("project.json");
-        load_file(path).expect("Error loading project.json.")
-    };
+    let project_json = env::args().nth(1).map_or_else(
+        || {
+            let path = Path::new("project.json");
+            load_file(path).expect("Error loading project.json")
+        },
+        |filename| {
+            let path = Path::new(&filename);
+            load_file(path).expect("Error loading project.json")
+        },
+    );
 
     let result = claw_verify::verify_string(&project_json);
 
