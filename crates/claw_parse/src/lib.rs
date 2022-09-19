@@ -19,7 +19,7 @@ pub use crate::{
 /// # Errors
 ///
 /// If `script` is malformed, this will return a [`Report`] from the [`ariadne`] crate.
-pub fn parse(script: &str) -> Result<AST, Report> {
+pub fn parse(script: &str) -> Result<AST, Box<Report>> {
     let parser = create_parser();
     build_report(parser.parse(script))
 }
