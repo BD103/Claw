@@ -1,14 +1,22 @@
+//! Contains logic for error handling.
+//!
+//! This is specifically meant to work with the [`ariadne`] crate.
+
 use std::ops::Range;
 
 use crate::AST;
 use ariadne::{Color, Fmt, Label, Report, ReportBuilder, ReportKind, Source};
 use chumsky::error::Simple;
 
+/// Error type returned by the parsers.
 pub type ParseError = Simple<char>;
 
+/// Takes a [`ParseError`] and applies it's contents to an existing [`ReportBuilder`].
+///
+/// This function is used to transform a list of errors into one concise [`Report`].
 fn apply_err(
     report: ReportBuilder<Range<usize>>,
-    error: ParseError,
+    error: &ParseError,
 ) -> ReportBuilder<Range<usize>> {
     use chumsky::error::SimpleReason;
 
@@ -30,11 +38,10 @@ fn apply_err(
                 Label::new(error.span())
                     .with_message(format!(
                         "Must be closed before this {}",
-                        match error.found() {
-                            Some(c) => c.to_string(),
-                            None => "end of file".to_string(),
-                        }
-                        .fg(Color::Red)
+                        error
+                            .found()
+                            .map_or_else(|| "end of file".to_string(), ToString::to_string)
+                            .fg(Color::Red)
                     ))
                     .with_color(Color::Red),
             ),
@@ -79,7 +86,12 @@ fn apply_err(
     }
 }
 
-pub fn build_report(parsed: Result<AST, Vec<ParseError>>) -> Result<AST, Report> {
+/// Transforms a result to use [`ariadne`]'s [`Report`].
+///
+/// This function is often used on the result of a parser made with
+/// [`create_parser`](crate::create_parser).
+#[allow(clippy::missing_errors_doc)]
+pub fn build_report(parsed: Result<AST, Vec<ParseError>>) -> Result<AST, Box<Report>> {
     match parsed {
         Ok(parsed) => Ok(parsed),
         Err(errors) => {
@@ -93,14 +105,18 @@ pub fn build_report(parsed: Result<AST, Vec<ParseError>>) -> Result<AST, Report>
             });
 
             for err in errors {
-                report = apply_err(report, err);
+                report = apply_err(report, &err);
             }
 
-            Err(report.finish())
+            // Box report so Result size is not too large
+            Err(Box::new(report.finish()))
         }
     }
 }
 
+/// Returns the [`Source`] of a string reference.
+///
+/// This function exists so that other crates do not have to directly depend on [`ariadne`].
 pub fn get_source<S: AsRef<str>>(script: S) -> Source {
     Source::from(script)
 }

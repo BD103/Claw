@@ -1,17 +1,23 @@
+#![doc = include_str!("../README.md")]
+
 use std::{env, fs, io, path::Path};
 
+/// Reads the contents of a [`Path`] to a [`String`].
 fn load_file(path: &Path) -> io::Result<String> {
     Ok(String::from_utf8_lossy(&fs::read(path)?).into_owned())
 }
 
-fn main() -> anyhow::Result<()> {
-    let script = if let Some(filename) = env::args().nth(1) {
-        let path = Path::new(&filename);
-        load_file(path).expect("Error loading file.")
-    } else {
-        let path = Path::new("./examples/stage1.claw");
-        load_file(path).expect("Error loading file.")
-    };
+fn main() {
+    let script = env::args().nth(1).map_or_else(
+        || {
+            let path = Path::new("./examples/stage1.claw");
+            load_file(path).expect("Error loading file.")
+        },
+        |filename| {
+            let path = Path::new(&filename);
+            load_file(path).expect("Error loading file.")
+        },
+    );
 
     // Generate AST
     let ast = match claw::parse::parse(&script) {
@@ -33,6 +39,4 @@ fn main() -> anyhow::Result<()> {
         // Verify generated serde_json::Value
         // claw::verify::verify(project_json);
     }
-
-    Ok(())
 }
