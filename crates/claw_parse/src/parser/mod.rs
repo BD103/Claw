@@ -4,7 +4,7 @@ mod statement;
 
 pub use self::{declare::*, expr::*, statement::*};
 
-use crate::{ast::*, ParseError};
+use crate::{ast::AST, ParseError};
 use chumsky::prelude::*;
 
 pub fn create_comment() -> impl Parser<char, (), Error = ParseError> {

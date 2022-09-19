@@ -8,7 +8,7 @@ pub type ParseError = Simple<char>;
 
 fn apply_err(
     report: ReportBuilder<Range<usize>>,
-    error: ParseError,
+    error: &ParseError,
 ) -> ReportBuilder<Range<usize>> {
     use chumsky::error::SimpleReason;
 
@@ -30,8 +30,10 @@ fn apply_err(
                 Label::new(error.span())
                     .with_message(format!(
                         "Must be closed before this {}",
-                        error.found().map_or_else(|| "end of file".to_string(), |c| c.to_string())
-                        .fg(Color::Red)
+                        error
+                            .found()
+                            .map_or_else(|| "end of file".to_string(), ToString::to_string)
+                            .fg(Color::Red)
                     ))
                     .with_color(Color::Red),
             ),
@@ -90,7 +92,7 @@ pub fn build_report(parsed: Result<AST, Vec<ParseError>>) -> Result<AST, Report>
             });
 
             for err in errors {
-                report = apply_err(report, err);
+                report = apply_err(report, &err);
             }
 
             Err(report.finish())
