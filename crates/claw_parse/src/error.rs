@@ -90,6 +90,7 @@ fn apply_err(
 ///
 /// This function is often used on the result of a parser made with
 /// [`create_parser`](crate::create_parser).
+#[allow(clippy::missing_errors_doc)]
 pub fn build_report(parsed: Result<AST, Vec<ParseError>>) -> Result<AST, Report> {
     match parsed {
         Ok(parsed) => Ok(parsed),

@@ -54,6 +54,11 @@ fn compile_schema() -> JSONSchema {
 }
 
 /// The main function that verifies a [`serde_json::Value`] is a valid project JSON.
+///
+/// # Errors
+///
+/// Returns a vector of [`ValidationErrorKind`]s and [`JSONPointer`]s. Technically this should be a
+/// [`ValidationError`](jsonschema::ValidationError), but this method works around lifetime errors.
 pub fn verify(project_json: &Value) -> Result<(), Vec<(ValidationErrorKind, JSONPointer)>> {
     let schema = compile_schema();
     let res = schema.validate(project_json);
@@ -62,6 +67,10 @@ pub fn verify(project_json: &Value) -> Result<(), Vec<(ValidationErrorKind, JSON
 }
 
 /// Conveniance function that verifies the string form of a project JSON.
+///
+/// # Errors
+///
+/// Please see [`verify`] for error description.
 ///
 /// # Panics
 ///
