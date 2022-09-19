@@ -74,6 +74,7 @@ jobs:
             -W clippy::pedantic
             -W clippy::cargo
             -A clippy::must_use_candidate
+            -A clippy::module_name_repetitions
 
       - name: Rustfmt
         run: |
