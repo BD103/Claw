@@ -1,3 +1,11 @@
+declare Var {
+    Score,
+}
+
 fn start() {
     motion::goto(0, 0);
+}
+
+sprite Scratch {
+    fn meow() {}
 }
