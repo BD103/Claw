@@ -1,0 +1,13 @@
+[package]
+name = "claw_ir"
+version = "0.1.0-dev"
+authors = ["BD103"]
+edition = "2021"
+description = "Programming language that compiles into Scratch blocks (SB3)."
+readme = "README.md"
+# homepage = "https://bd103.github.io/Claw"
+repository = "https://github.com/BD103/Claw"
+license = "MIT OR Apache-2.0"
+publish = false
+
+[dependencies]

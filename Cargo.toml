@@ -23,6 +23,7 @@ verify = ["dep:claw_verify"]
 members = [
     "crates/claw_driver",
     "crates/claw_parse",
+    "crates/claw_ir",
     "crates/claw_schema",
     "crates/claw_stdlib",
     "crates/claw_verify",
