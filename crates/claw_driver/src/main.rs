@@ -30,10 +30,7 @@ fn main() {
         }
     };
 
-    // Create IR
-    let ir = claw::ir::create_ir(ast);
-
-    dbg!(ir);
+    dbg!(ast);
 
     // Save to sb3 file
 

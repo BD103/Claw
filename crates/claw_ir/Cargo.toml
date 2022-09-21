@@ -1,7 +1,0 @@
-[package]
-name = "claw_ir"
-version = "0.1.0-dev"
-edition = "2021"
-
-[dependencies]
-claw_parse = { path = "../claw_parse" }
