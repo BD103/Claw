@@ -1,4 +1,4 @@
-use crate::builtin::OpCode;
+use claw_stdlib::OpCode;
 
 pub struct Func {
     pub name: String,

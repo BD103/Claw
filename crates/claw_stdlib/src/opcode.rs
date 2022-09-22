@@ -1,4 +1,4 @@
-use super::Type::{self, *};
+use crate::Type::{self, *};
 
 macro_rules! create_opcodes {
     {
