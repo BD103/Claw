@@ -13,14 +13,14 @@ macro_rules! create_ctx {
         }),*
     }) => {
         $scope struct $name {
-            $($qname: QueryCache<$qtype>),*
+            $($qname: ::crate::query::QueryCache<$qtype>),*
         }
 
         impl $name {
             pub fn new() -> Self {
                 $(
                     #[allow(unused_mut)]
-                    let mut $qname = QueryCache::new($source);
+                    let mut $qname = ::crate::query::QueryCache::new($source);
                     $($qname.add_provider($provider);)*
                 )*
 
@@ -31,7 +31,7 @@ macro_rules! create_ctx {
         }
 
         $(
-            impl Queryable<$qtype> for $name {
+            impl ::crate::query::Queryable<$qtype> for $name {
                 fn query(&mut self) -> $qtype {
                     self.$qname.query()
                 }
@@ -40,4 +40,6 @@ macro_rules! create_ctx {
     };
 }
 
-create_ctx!(pub Ctx {});
+create_ctx!(
+    pub Ctx {}
+);
