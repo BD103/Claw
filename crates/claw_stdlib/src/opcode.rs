@@ -20,43 +20,59 @@ macro_rules! create_opcodes {
         }),*
     ) => {
         paste! {
+            /// An enum of every single built-in block in the default Scratch editor.
             pub enum OpCode {
                 // Double recursion so $ename can be unwound as well as $emod
                 $(
                     $(
-                        [<$emod $ename>]
-                    ),*
-                ),*
+                        [<$emod $ename>],
+                    )*
+                )*
             }
 
             impl OpCode {
+                /// Returns the string representation of the [`OpCode`], to be used in JSON schema.
                 pub fn code(&self) -> &'static str {
                     match self {
                         $(
                             $(
-                                Self::[<$emod $ename>] => stringify!([<$opmod $opname>])
-                            ),*
-                        ),*
+                                Self::[<$emod $ename>] => stringify!([<$opmod $opname>]),
+                            )*
+                        )*
                     }
                 }
 
+                /// Returns the required argument types of a function.
                 pub fn args(&self) -> &'static [Type] {
                     match self {
                         $(
                             $(
-                                Self::[<$emod $ename>] => &[$($oparg),*]
-                            ),*
-                        ),*
+                                Self::[<$emod $ename>] => &[$($oparg),*],
+                            )*
+                        )*
                     }
                 }
 
+                /// Returns the type returned by a function.
                 pub fn returns(&self) -> Option<Type> {
                     match self {
                         $(
                             $(
-                                Self::[<$emod $ename>] => create_optional!($($opreturn)?)
-                            ),*
-                        ),*
+                                Self::[<$emod $ename>] => create_optional!($($opreturn)?),
+                            )*
+                        )*
+                    }
+                }
+
+                /// Returns the [`OpCode`] for a given module and name if it exists,
+                pub fn from_claw(mod_: &str, name: &str) -> Option<Self> {
+                    match (mod_, name) {
+                        $(
+                            $(
+                                (stringify!($clmod), stringify!($clname)) => Some(Self::[<$emod $ename>]),
+                            )*
+                        )*
+                        (_, _) => None,
                     }
                 }
             }
