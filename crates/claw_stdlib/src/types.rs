@@ -3,5 +3,4 @@ pub enum Type {
     Number,
     Text,
     Boolean,
-    Nothing,
 }
