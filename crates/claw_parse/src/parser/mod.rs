@@ -52,6 +52,8 @@ pub fn create_parser() -> impl Parser<char, AST, Error = Simple<char>> {
 mod tests {
     use super::*;
 
+    // create_parser() is tested externally
+
     #[test]
     fn comments() {
         let test_cases = [

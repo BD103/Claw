@@ -1,0 +1,31 @@
+// Backdrop declaration
+declare Var {
+    Score,
+}
+
+// Event backdrop function
+@on_start
+fn start() {
+    self::reset();
+}
+
+// Backdrop function
+fn reset() {
+    looks::next_backdrop();
+}
+
+sprite Scratch {
+    declare Var {
+        TimesMeowed,
+    }
+
+    @on_start
+    fn start() {
+        self::meow();
+    }
+
+    fn meow() {
+        data::change_by(Var::TimesMeowed, 1);
+        sound::start($Sound::Pop);
+    }
+}
