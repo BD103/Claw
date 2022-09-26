@@ -24,7 +24,7 @@ fn main() {
         Ok(ast) => ast,
         Err(report) => {
             report
-                .print(claw::parse::get_source(&script))
+                .print(ariadne::Source::from(&script))
                 .expect("Error writing to Stderr, please use a terminal.");
             std::process::exit(1);
         }
