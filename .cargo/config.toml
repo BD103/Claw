@@ -1,0 +1,2 @@
+[alias]
+run-simple = "run -p claw_driver -- examples/simple.claw"
