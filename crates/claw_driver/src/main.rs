@@ -24,8 +24,8 @@ fn main() {
         Ok(ast) => ast,
         Err(report) => {
             report
-                .eprint(claw::parse::get_source(&script))
-                .expect("Error writing to Stderr, please file a bug report!");
+                .print(claw::parse::get_source(&script))
+                .expect("Error writing to Stderr, please use a terminal.");
             std::process::exit(1);
         }
     };
