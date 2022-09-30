@@ -1,3 +1,5 @@
+@on(start)
 fn start() {
+    // Test
     motion::goto(0, 0);
 }

@@ -13,3 +13,14 @@ publish = false
 [dependencies]
 ariadne = "0.1.5"
 chumsky = "0.8.0"
+
+# Required for snapshot testing
+serde = { version = "1.0.145", optional = true, features = ["derive"] }
+
+[dev-dependencies]
+insta = { version = "1.20.0", features = ["glob", "ron"] }
+
+[[test]]
+name = "snap"
+path = "tests/snap.rs"
+required-features = ["serde"]

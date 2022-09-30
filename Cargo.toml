@@ -27,3 +27,7 @@ members = [
     "crates/claw_stdlib",
     "crates/claw_verify",
 ]
+
+[profile.dev.package]
+insta = { opt-level = 3 }
+similar = { opt-level = 3 }

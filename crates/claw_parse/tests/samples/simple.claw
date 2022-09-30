@@ -1,0 +1,4 @@
+@on(start)
+fn do_thing() {
+    looks::show();
+}

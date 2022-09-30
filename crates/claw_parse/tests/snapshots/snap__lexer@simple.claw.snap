@@ -1,0 +1,126 @@
+---
+source: crates/claw_parse/tests/snap.rs
+expression: res.unwrap()
+input_file: crates/claw_parse/tests/samples/simple.claw
+---
+[
+  Token(
+    kind: AtSign,
+    span: Range(
+      start: 0,
+      end: 1,
+    ),
+  ),
+  Token(
+    kind: Ident("on"),
+    span: Range(
+      start: 1,
+      end: 3,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 3,
+      end: 4,
+    ),
+  ),
+  Token(
+    kind: Ident("start"),
+    span: Range(
+      start: 4,
+      end: 9,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 9,
+      end: 10,
+    ),
+  ),
+  Token(
+    kind: Ident("fn"),
+    span: Range(
+      start: 11,
+      end: 13,
+    ),
+  ),
+  Token(
+    kind: Ident("do_thing"),
+    span: Range(
+      start: 14,
+      end: 22,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 22,
+      end: 23,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 23,
+      end: 24,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 25,
+      end: 26,
+    ),
+  ),
+  Token(
+    kind: Ident("looks"),
+    span: Range(
+      start: 31,
+      end: 36,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 36,
+      end: 38,
+    ),
+  ),
+  Token(
+    kind: Ident("show"),
+    span: Range(
+      start: 38,
+      end: 42,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 42,
+      end: 43,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 43,
+      end: 44,
+    ),
+  ),
+  Token(
+    kind: Semi,
+    span: Range(
+      start: 44,
+      end: 45,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 46,
+      end: 47,
+    ),
+  ),
+]
