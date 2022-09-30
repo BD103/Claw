@@ -20,7 +20,11 @@ serde = { version = "1.0.145", optional = true, features = ["derive"] }
 [dev-dependencies]
 insta = { version = "1.20.0", features = ["glob", "ron"] }
 
+[features]
+snap = ["serde"]
+serde = ["dep:serde"]
+
 [[test]]
 name = "snap"
 path = "tests/snap.rs"
-required-features = ["serde"]
+required-features = ["snap"]

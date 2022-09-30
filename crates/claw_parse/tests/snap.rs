@@ -1,4 +1,4 @@
-// If this isn't running when you execute test, make sure to enable the "serde" feature. This will be skipped if disabled.
+// If this isn't running when you execute test, make sure to enable the "snap" feature. This will be skipped if disabled.
 // https://doc.rust-lang.org/stable/cargo/reference/cargo-targets.html#the-required-features-field
 
 use insta::{glob, assert_ron_snapshot};
