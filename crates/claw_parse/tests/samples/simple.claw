@@ -1,4 +1,5 @@
 @on(start)
 fn do_thing() {
+    // This is an epic cool comment that totally is not ignored by its peers.
     looks::show();
 }

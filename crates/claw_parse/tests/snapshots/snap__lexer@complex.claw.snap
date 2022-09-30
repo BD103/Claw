@@ -1,0 +1,924 @@
+---
+source: crates/claw_parse/tests/snap.rs
+expression: res.unwrap()
+input_file: crates/claw_parse/tests/samples/complex.claw
+---
+[
+  Token(
+    kind: Ident("declare"),
+    span: Range(
+      start: 0,
+      end: 7,
+    ),
+  ),
+  Token(
+    kind: Ident("Var"),
+    span: Range(
+      start: 8,
+      end: 11,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 12,
+      end: 13,
+    ),
+  ),
+  Token(
+    kind: Ident("Score"),
+    span: Range(
+      start: 18,
+      end: 23,
+    ),
+  ),
+  Token(
+    kind: Comma,
+    span: Range(
+      start: 23,
+      end: 24,
+    ),
+  ),
+  Token(
+    kind: Ident("HighScore"),
+    span: Range(
+      start: 29,
+      end: 38,
+    ),
+  ),
+  Token(
+    kind: Comma,
+    span: Range(
+      start: 38,
+      end: 39,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 64,
+      end: 65,
+    ),
+  ),
+  Token(
+    kind: AtSign,
+    span: Range(
+      start: 67,
+      end: 68,
+    ),
+  ),
+  Token(
+    kind: Ident("on"),
+    span: Range(
+      start: 68,
+      end: 70,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 70,
+      end: 71,
+    ),
+  ),
+  Token(
+    kind: Ident("start"),
+    span: Range(
+      start: 71,
+      end: 76,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 76,
+      end: 77,
+    ),
+  ),
+  Token(
+    kind: Ident("fn"),
+    span: Range(
+      start: 78,
+      end: 80,
+    ),
+  ),
+  Token(
+    kind: Ident("start"),
+    span: Range(
+      start: 81,
+      end: 86,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 86,
+      end: 87,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 87,
+      end: 88,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 89,
+      end: 90,
+    ),
+  ),
+  Token(
+    kind: Ident("looks"),
+    span: Range(
+      start: 95,
+      end: 100,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 100,
+      end: 102,
+    ),
+  ),
+  Token(
+    kind: Ident("switch_backdrop"),
+    span: Range(
+      start: 102,
+      end: 117,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 117,
+      end: 118,
+    ),
+  ),
+  Token(
+    kind: EnumSign,
+    span: Range(
+      start: 118,
+      end: 119,
+    ),
+  ),
+  Token(
+    kind: Ident("Backdrop"),
+    span: Range(
+      start: 119,
+      end: 127,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 127,
+      end: 129,
+    ),
+  ),
+  Token(
+    kind: Ident("Blue"),
+    span: Range(
+      start: 129,
+      end: 133,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 133,
+      end: 134,
+    ),
+  ),
+  Token(
+    kind: Semi,
+    span: Range(
+      start: 134,
+      end: 135,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 136,
+      end: 137,
+    ),
+  ),
+  Token(
+    kind: Ident("sprite"),
+    span: Range(
+      start: 139,
+      end: 145,
+    ),
+  ),
+  Token(
+    kind: Ident("Scratch"),
+    span: Range(
+      start: 146,
+      end: 153,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 154,
+      end: 155,
+    ),
+  ),
+  Token(
+    kind: Ident("declare"),
+    span: Range(
+      start: 193,
+      end: 200,
+    ),
+  ),
+  Token(
+    kind: Ident("Var"),
+    span: Range(
+      start: 201,
+      end: 204,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 205,
+      end: 206,
+    ),
+  ),
+  Token(
+    kind: Ident("AccY"),
+    span: Range(
+      start: 207,
+      end: 211,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 212,
+      end: 213,
+    ),
+  ),
+  Token(
+    kind: AtSign,
+    span: Range(
+      start: 219,
+      end: 220,
+    ),
+  ),
+  Token(
+    kind: Ident("on"),
+    span: Range(
+      start: 220,
+      end: 222,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 222,
+      end: 223,
+    ),
+  ),
+  Token(
+    kind: Ident("start"),
+    span: Range(
+      start: 223,
+      end: 228,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 228,
+      end: 229,
+    ),
+  ),
+  Token(
+    kind: Ident("fn"),
+    span: Range(
+      start: 234,
+      end: 236,
+    ),
+  ),
+  Token(
+    kind: Ident("start"),
+    span: Range(
+      start: 237,
+      end: 242,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 242,
+      end: 243,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 243,
+      end: 244,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 245,
+      end: 246,
+    ),
+  ),
+  Token(
+    kind: Ident("use"),
+    span: Range(
+      start: 255,
+      end: 258,
+    ),
+  ),
+  Token(
+    kind: Ident("sensing"),
+    span: Range(
+      start: 259,
+      end: 266,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 266,
+      end: 268,
+    ),
+  ),
+  Token(
+    kind: Ident("is_key_pressed"),
+    span: Range(
+      start: 268,
+      end: 282,
+    ),
+  ),
+  Token(
+    kind: Semi,
+    span: Range(
+      start: 282,
+      end: 283,
+    ),
+  ),
+  Token(
+    kind: Ident("motion"),
+    span: Range(
+      start: 293,
+      end: 299,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 299,
+      end: 301,
+    ),
+  ),
+  Token(
+    kind: Ident("goto"),
+    span: Range(
+      start: 301,
+      end: 305,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 305,
+      end: 306,
+    ),
+  ),
+  Token(
+    kind: Number("0"),
+    span: Range(
+      start: 306,
+      end: 307,
+    ),
+  ),
+  Token(
+    kind: Comma,
+    span: Range(
+      start: 307,
+      end: 308,
+    ),
+  ),
+  Token(
+    kind: Number("0"),
+    span: Range(
+      start: 309,
+      end: 310,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 310,
+      end: 311,
+    ),
+  ),
+  Token(
+    kind: Semi,
+    span: Range(
+      start: 311,
+      end: 312,
+    ),
+  ),
+  Token(
+    kind: Ident("forever"),
+    span: Range(
+      start: 322,
+      end: 329,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 330,
+      end: 331,
+    ),
+  ),
+  Token(
+    kind: Ident("if"),
+    span: Range(
+      start: 344,
+      end: 346,
+    ),
+  ),
+  Token(
+    kind: Ident("is_key_pressed"),
+    span: Range(
+      start: 347,
+      end: 361,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 361,
+      end: 362,
+    ),
+  ),
+  Token(
+    kind: EnumSign,
+    span: Range(
+      start: 362,
+      end: 363,
+    ),
+  ),
+  Token(
+    kind: Ident("Key"),
+    span: Range(
+      start: 363,
+      end: 366,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 366,
+      end: 368,
+    ),
+  ),
+  Token(
+    kind: Ident("Up"),
+    span: Range(
+      start: 368,
+      end: 370,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 370,
+      end: 371,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 372,
+      end: 373,
+    ),
+  ),
+  Token(
+    kind: Ident("self"),
+    span: Range(
+      start: 390,
+      end: 394,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 394,
+      end: 396,
+    ),
+  ),
+  Token(
+    kind: Ident("acc_y"),
+    span: Range(
+      start: 396,
+      end: 401,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 401,
+      end: 402,
+    ),
+  ),
+  Token(
+    kind: Number("0.1"),
+    span: Range(
+      start: 402,
+      end: 405,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 405,
+      end: 406,
+    ),
+  ),
+  Token(
+    kind: Semi,
+    span: Range(
+      start: 406,
+      end: 407,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 420,
+      end: 421,
+    ),
+  ),
+  Token(
+    kind: Ident("else"),
+    span: Range(
+      start: 422,
+      end: 426,
+    ),
+  ),
+  Token(
+    kind: Ident("if"),
+    span: Range(
+      start: 427,
+      end: 429,
+    ),
+  ),
+  Token(
+    kind: Ident("is_key_pressed"),
+    span: Range(
+      start: 430,
+      end: 444,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 444,
+      end: 445,
+    ),
+  ),
+  Token(
+    kind: EnumSign,
+    span: Range(
+      start: 445,
+      end: 446,
+    ),
+  ),
+  Token(
+    kind: Ident("Key"),
+    span: Range(
+      start: 446,
+      end: 449,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 449,
+      end: 451,
+    ),
+  ),
+  Token(
+    kind: Ident("Down"),
+    span: Range(
+      start: 451,
+      end: 455,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 455,
+      end: 456,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 457,
+      end: 458,
+    ),
+  ),
+  Token(
+    kind: Ident("data"),
+    span: Range(
+      start: 513,
+      end: 517,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 517,
+      end: 519,
+    ),
+  ),
+  Token(
+    kind: Ident("set_var"),
+    span: Range(
+      start: 519,
+      end: 526,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 526,
+      end: 527,
+    ),
+  ),
+  Token(
+    kind: EnumSign,
+    span: Range(
+      start: 527,
+      end: 528,
+    ),
+  ),
+  Token(
+    kind: Ident("Var"),
+    span: Range(
+      start: 528,
+      end: 531,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 531,
+      end: 533,
+    ),
+  ),
+  Token(
+    kind: Ident("AccY"),
+    span: Range(
+      start: 533,
+      end: 537,
+    ),
+  ),
+  Token(
+    kind: Comma,
+    span: Range(
+      start: 537,
+      end: 538,
+    ),
+  ),
+  Token(
+    kind: Number("0"),
+    span: Range(
+      start: 539,
+      end: 540,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 540,
+      end: 541,
+    ),
+  ),
+  Token(
+    kind: Semi,
+    span: Range(
+      start: 541,
+      end: 542,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 555,
+      end: 556,
+    ),
+  ),
+  Token(
+    kind: Ident("self"),
+    span: Range(
+      start: 570,
+      end: 574,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 574,
+      end: 576,
+    ),
+  ),
+  Token(
+    kind: Ident("apply_acc"),
+    span: Range(
+      start: 576,
+      end: 585,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 585,
+      end: 586,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 586,
+      end: 587,
+    ),
+  ),
+  Token(
+    kind: Semi,
+    span: Range(
+      start: 587,
+      end: 588,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 597,
+      end: 598,
+    ),
+  ),
+  Token(
+    kind: BracketClose,
+    span: Range(
+      start: 603,
+      end: 604,
+    ),
+  ),
+  Token(
+    kind: Ident("fn"),
+    span: Range(
+      start: 610,
+      end: 612,
+    ),
+  ),
+  Token(
+    kind: Ident("acc_y"),
+    span: Range(
+      start: 613,
+      end: 618,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 618,
+      end: 619,
+    ),
+  ),
+  Token(
+    kind: Ident("n"),
+    span: Range(
+      start: 619,
+      end: 620,
+    ),
+  ),
+  Token(
+    kind: Colon,
+    span: Range(
+      start: 620,
+      end: 621,
+    ),
+  ),
+  Token(
+    kind: Ident("Number"),
+    span: Range(
+      start: 622,
+      end: 628,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 628,
+      end: 629,
+    ),
+  ),
+  Token(
+    kind: BracketOpen,
+    span: Range(
+      start: 630,
+      end: 631,
+    ),
+  ),
+  Token(
+    kind: Ident("if"),
+    span: Range(
+      start: 687,
+      end: 689,
+    ),
+  ),
+  Token(
+    kind: Ident("ops"),
+    span: Range(
+      start: 690,
+      end: 693,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 693,
+      end: 695,
+    ),
+  ),
+  Token(
+    kind: Ident("add"),
+    span: Range(
+      start: 695,
+      end: 698,
+    ),
+  ),
+  Token(
+    kind: ParenOpen,
+    span: Range(
+      start: 698,
+      end: 699,
+    ),
+  ),
+  Token(
+    kind: EnumSign,
+    span: Range(
+      start: 699,
+      end: 700,
+    ),
+  ),
+  Token(
+    kind: Ident("Var"),
+    span: Range(
+      start: 700,
+      end: 703,
+    ),
+  ),
+  Token(
+    kind: DoubleColon,
+    span: Range(
+      start: 703,
+      end: 705,
+    ),
+  ),
+  Token(
+    kind: Ident("AccY"),
+    span: Range(
+      start: 705,
+      end: 709,
+    ),
+  ),
+  Token(
+    kind: Comma,
+    span: Range(
+      start: 709,
+      end: 710,
+    ),
+  ),
+  Token(
+    kind: Ident("n"),
+    span: Range(
+      start: 711,
+      end: 712,
+    ),
+  ),
+  Token(
+    kind: ParenClose,
+    span: Range(
+      start: 712,
+      end: 713,
+    ),
+  ),
+]

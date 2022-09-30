@@ -77,50 +77,50 @@ input_file: crates/claw_parse/tests/samples/simple.claw
   Token(
     kind: Ident("looks"),
     span: Range(
-      start: 31,
-      end: 36,
+      start: 109,
+      end: 114,
     ),
   ),
   Token(
     kind: DoubleColon,
     span: Range(
-      start: 36,
-      end: 38,
+      start: 114,
+      end: 116,
     ),
   ),
   Token(
     kind: Ident("show"),
     span: Range(
-      start: 38,
-      end: 42,
+      start: 116,
+      end: 120,
     ),
   ),
   Token(
     kind: ParenOpen,
     span: Range(
-      start: 42,
-      end: 43,
+      start: 120,
+      end: 121,
     ),
   ),
   Token(
     kind: ParenClose,
     span: Range(
-      start: 43,
-      end: 44,
+      start: 121,
+      end: 122,
     ),
   ),
   Token(
     kind: Semi,
     span: Range(
-      start: 44,
-      end: 45,
+      start: 122,
+      end: 123,
     ),
   ),
   Token(
     kind: BracketClose,
     span: Range(
-      start: 46,
-      end: 47,
+      start: 124,
+      end: 125,
     ),
   ),
 ]

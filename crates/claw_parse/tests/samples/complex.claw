@@ -1,0 +1,43 @@
+declare Var {
+    Score,
+    HighScore, // Make cloud variable?
+}
+
+@on(start)
+fn start() {
+    looks::switch_backdrop($Backdrop::Blue);
+}
+
+sprite Scratch {
+    // Stands for "acceleration"
+    declare Var { AccY }
+
+    @on(start)
+    fn start() {
+        use sensing::is_key_pressed;
+
+        motion::goto(0, 0);
+
+        forever {
+            if is_key_pressed($Key::Up) {
+                self::acc_y(0.1);
+            } else if is_key_pressed($Key::Down) {
+                // Reset acceleration
+                data::set_var($Var::AccY, 0);
+            }
+
+            self::apply_acc();
+        }
+    }
+
+    fn acc_y(n: Number) {
+        // Ensure acc does not go beyond 0..=4
+        if ops::add($Var::AccY, n) > 0 && ops::add($Var::AccY, n) < 4 {
+            data::change_var($Var::AccY, n);
+        }
+    }
+
+    fn apply_acc() {
+        motion::change_y($Var::AccY);
+    }
+}
