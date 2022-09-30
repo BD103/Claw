@@ -20,7 +20,7 @@ fn main() {
     );
 
     // Generate AST
-    let ast = match claw::parse::parse(&script) {
+    let _ast = match claw::parse::parse(&script) {
         Ok(ast) => ast,
         Err(report) => {
             report
@@ -29,8 +29,6 @@ fn main() {
             std::process::exit(1);
         }
     };
-
-    dbg!(ast);
 
     // Save to sb3 file
 
