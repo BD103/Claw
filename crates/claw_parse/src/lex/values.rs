@@ -37,3 +37,40 @@ pub fn create_bool() -> impl Parser<char, TokenKind, Error = LexError> {
             .ignored()
             .to(TokenKind::Boolean(false)))
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn ident() {
+        let input = [
+            "hi",
+            "hiThere",
+            "hi_there",
+            "_hiThErE",
+            "h1Th3r3",
+        ];
+        // Invalid idents
+        let input_err = [
+            "5ithere",
+            "-hello",
+            "🦀",
+        ];
+
+        let parser = create_ident();
+
+        input.into_iter()
+            .for_each(|x| {
+                let output = parser.parse(x);
+                assert_eq!(output, Ok(TokenKind::Ident(x.into())));
+            });
+        
+        input_err.into_iter()
+            .for_each(|x| {
+                let output = parser.parse(x);
+                assert!(output.is_err());
+            });
+        
+    }
+}
