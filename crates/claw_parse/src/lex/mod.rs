@@ -52,3 +52,27 @@ pub fn create_lexer() -> impl Parser<char, Vec<Token>, Error = LexError> {
         .repeated()
         .map(|x| x.into_iter().filter_map(|x| x).collect::<Vec<_>>())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn comment() {
+        let input = [
+            "// Single line comment",
+            "// // // Woah comments",
+            "//\n// Another comment",
+            "// \n// newlines woooo",
+            "// perfectly alined \n",
+            "/// as all things sho-",
+            "// uld be lol ////////",
+        ];
+        let parser = create_comment();
+
+        input.into_iter().for_each(|x| {
+            let output = parser.parse(x);
+            assert_eq!(output, Ok(()));
+        });
+    }
+}
