@@ -1,11 +1,8 @@
 mod token;
 mod values;
 
+pub use self::token::{Token, TokenKind, *};
 use self::values::{create_bool, create_ident, create_number, create_text};
-pub use self::{
-    token::*,
-    token::{Token, TokenKind},
-};
 
 use crate::error::LexError;
 use chumsky::prelude::*;
@@ -79,17 +76,16 @@ mod tests {
         ];
         let parser = create_single();
 
-        input.into_iter()
-            .for_each(|(s, kind)| {
-                let output = parser.parse(s);
+        input.into_iter().for_each(|(s, kind)| {
+            let output = parser.parse(s);
 
-                assert!(output.is_ok());
+            assert!(output.is_ok());
 
-                let output = output.unwrap();
+            let output = output.unwrap();
 
-                assert_eq!(output.kind, kind);
-                assert_eq!(output.span, 0..s.len());
-            });
+            assert_eq!(output.kind, kind);
+            assert_eq!(output.span, 0..s.len());
+        });
     }
 
     #[test]

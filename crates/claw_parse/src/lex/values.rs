@@ -44,34 +44,21 @@ mod tests {
 
     #[test]
     fn ident() {
-        let input = [
-            "hi",
-            "hiThere",
-            "hi_there",
-            "_hiThErE",
-            "h1Th3r3",
-        ];
+        let input = ["hi", "hiThere", "hi_there", "_hiThErE", "h1Th3r3"];
         // Invalid idents
-        let input_err = [
-            "5ithere",
-            "-hello",
-            "🦀",
-        ];
+        let input_err = ["5ithere", "-hello", "🦀"];
 
         let parser = create_ident();
 
-        input.into_iter()
-            .for_each(|x| {
-                let output = parser.parse(x);
-                assert_eq!(output, Ok(TokenKind::Ident(x.into())));
-            });
-        
-        input_err.into_iter()
-            .for_each(|x| {
-                let output = parser.parse(x);
-                assert!(output.is_err());
-            });
-        
+        input.into_iter().for_each(|x| {
+            let output = parser.parse(x);
+            assert_eq!(output, Ok(TokenKind::Ident(x.into())));
+        });
+
+        input_err.into_iter().for_each(|x| {
+            let output = parser.parse(x);
+            assert!(output.is_err());
+        });
     }
 
     #[test]
@@ -85,41 +72,29 @@ mod tests {
 
         let parser = create_text();
 
-        input.into_iter()
-            .for_each(|x| {
-                let output = parser.parse(x);
-                assert_eq!(output, Ok(TokenKind::Text(x[1..x.len() - 1].into())));
-            });
+        input.into_iter().for_each(|x| {
+            let output = parser.parse(x);
+            assert_eq!(output, Ok(TokenKind::Text(x[1..x.len() - 1].into())));
+        });
     }
 
     #[test]
     fn number() {
-        let input = [
-            "0",
-            "1",
-            "3.14159265",
-            "255",
-            "9876543234567897654",
-            "6.0",
-        ];
+        let input = ["0", "1", "3.14159265", "255", "9876543234567897654", "6.0"];
 
-        let input_err = [
-            ".2"
-        ];
+        let input_err = [".2"];
 
         let parser = create_number();
 
-        input.into_iter()
-            .for_each(|x| {
-                let output = parser.parse(x);
-                assert_eq!(output, Ok(TokenKind::Number(x.into())));
-            });
-        
-        input_err.into_iter()
-            .for_each(|x| {
-                let output = parser.parse(x);
-                assert!(output.is_err());
-            });
+        input.into_iter().for_each(|x| {
+            let output = parser.parse(x);
+            assert_eq!(output, Ok(TokenKind::Number(x.into())));
+        });
+
+        input_err.into_iter().for_each(|x| {
+            let output = parser.parse(x);
+            assert!(output.is_err());
+        });
 
         // Edge case where decimal is ignored
         assert_eq!(parser.parse("3."), Ok(TokenKind::Number("3".into())));
@@ -127,17 +102,13 @@ mod tests {
 
     #[test]
     fn bool() {
-        let input = [
-            ("true", true),
-            ("false", false),
-        ];
+        let input = [("true", true), ("false", false)];
 
         let parser = create_bool();
 
-        input.into_iter()
-            .for_each(|(x, expected)| {
-                let output = parser.parse(x);
-                assert_eq!(output, Ok(TokenKind::Boolean(expected)));
-            });
+        input.into_iter().for_each(|(x, expected)| {
+            let output = parser.parse(x);
+            assert_eq!(output, Ok(TokenKind::Boolean(expected)));
+        });
     }
 }
