@@ -124,4 +124,20 @@ mod tests {
         // Edge case where decimal is ignored
         assert_eq!(parser.parse("3."), Ok(TokenKind::Number("3".into())));
     }
+
+    #[test]
+    fn bool() {
+        let input = [
+            ("true", true),
+            ("false", false),
+        ];
+
+        let parser = create_bool();
+
+        input.into_iter()
+            .for_each(|(x, expected)| {
+                let output = parser.parse(x);
+                assert_eq!(output, Ok(TokenKind::Boolean(expected)));
+            });
+    }
 }
