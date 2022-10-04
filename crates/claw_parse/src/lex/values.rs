@@ -73,4 +73,22 @@ mod tests {
             });
         
     }
+
+    #[test]
+    fn text() {
+        let input = [
+            "\"This is a string\"",
+            "\"\"", // empty string
+            "\"a\"",
+            "\"yees \n newlines\"",
+        ];
+
+        let parser = create_text();
+
+        input.into_iter()
+            .for_each(|x| {
+                let output = parser.parse(x);
+                assert_eq!(output, Ok(TokenKind::Text(x[1..x.len() - 1].into())));
+            });
+    }
 }
