@@ -36,18 +36,19 @@ pub fn create_single() -> impl Parser<char, Token, Error = LexError> {
     .map_with_span(|kind, span| Token { kind, span })
 }
 
-// TODO: Figure out how to ignore everything without all the ignores
-pub fn create_comment() -> impl Parser<char, (), Error = LexError> {
+// `Clone` so it can be used in padded_by.
+pub fn create_comment() -> impl Parser<char, (), Error = LexError> + Clone {
     just("//")
-        .ignore_then(take_until(choice((just('\n').ignored(), end().ignored()))))
+        .then(take_until(just('\n')))
         .ignored()
 }
 
 pub fn create_lexer() -> impl Parser<char, Vec<Token>, Error = LexError> {
-    choice((create_single().map(Some), create_comment().to(None)))
+    create_single()
+        .padded_by(create_comment().padded().repeated())
         .padded()
         .repeated()
-        .map(|x| x.into_iter().filter_map(|x| x).collect::<Vec<_>>())
+        .then_ignore(end())
 }
 
 #[cfg(test)]
