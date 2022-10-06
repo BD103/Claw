@@ -32,6 +32,10 @@ pub fn create_single() -> impl Parser<char, Token, Error = LexError> {
         just("!=").to(TokenKind::NotEq),
         just("&&").to(TokenKind::And),
         just("||").to(TokenKind::Or),
+        just(">=").to(TokenKind::Ge),
+        just('>').to(TokenKind::Gt),
+        just("<=").to(TokenKind::Le),
+        just('<').to(TokenKind::Lt),
     ))
     .map_with_span(|kind, span| Token { kind, span })
 }
@@ -39,7 +43,7 @@ pub fn create_single() -> impl Parser<char, Token, Error = LexError> {
 // `Clone` so it can be used in padded_by.
 pub fn create_comment() -> impl Parser<char, (), Error = LexError> + Clone {
     just("//")
-        .then(take_until(just('\n')))
+        .then(take_until(just('\n').ignored().or(end())))
         .ignored()
 }
 
@@ -54,8 +58,6 @@ pub fn create_lexer() -> impl Parser<char, Vec<Token>, Error = LexError> {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    // create_lexer is tested in integration tests
 
     #[test]
     fn single() {
@@ -74,6 +76,10 @@ mod tests {
             ("!=", TokenKind::NotEq),
             ("&&", TokenKind::And),
             ("||", TokenKind::Or),
+            (">", TokenKind::Gt),
+            (">=", TokenKind::Ge),
+            ("<", TokenKind::Lt),
+            ("<=", TokenKind::Le),
         ];
         let parser = create_single();
 
@@ -104,7 +110,7 @@ mod tests {
 
         input.into_iter().for_each(|x| {
             let output = parser.parse(x);
-            assert_eq!(output, Ok(()));
+            assert_eq!(output, Ok(()), "Tested: {}", x);
         });
     }
 }

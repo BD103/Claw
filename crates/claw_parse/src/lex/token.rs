@@ -63,4 +63,12 @@ pub enum TokenKind {
     And,
     /// `||`
     Or,
+    /// `>`
+    Gt,
+    /// `>=`
+    Ge,
+    /// `<`
+    Lt,
+    /// `<=`
+    Le,
 }
