@@ -13,10 +13,10 @@ use chumsky::prelude::*;
 ///
 /// This parser looks for `//`, then ignores the rest of the line.
 pub fn create_comment() -> impl Parser<char, (), Error = ParseError> {
-    just("//").then(take_until(choice((
-        just('\n').ignored(),
-        end()
-    )))).padded().ignored()
+    just("//")
+        .then(take_until(choice((just('\n').ignored(), end()))))
+        .padded()
+        .ignored()
 }
 
 /// Creates the main [`Parser`] to be used when parsing a Claw script.
@@ -59,17 +59,17 @@ mod tests {
         let test_cases = [
             "// This is a comment",
             "// this is a comment with a newline\n",
-            "// this is a comment with a newline then whitespace\n  ", // Probably shouldn't happen but oh well
+            "// this is a comment with a newline then whitespace\n  ", /* Probably shouldn't
+                                                                        * happen but oh well */
             "  // this is a comment with whitespace prefixed",
             "// fn commented_code() {",
         ];
 
         let parser = create_comment();
-        
-        test_cases.into_iter()
-            .for_each(|x| {
-                let res = parser.parse(x);
-                assert!(res.is_ok());
-            });
+
+        test_cases.into_iter().for_each(|x| {
+            let res = parser.parse(x);
+            assert!(res.is_ok());
+        });
     }
 }
