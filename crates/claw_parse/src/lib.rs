@@ -1,7 +1,9 @@
 #![doc = include_str!("../README.md")]
 
+pub mod ast;
 pub mod error;
 pub mod lex;
+pub mod parse;
 
 use ariadne::Report;
 use chumsky::Parser;
