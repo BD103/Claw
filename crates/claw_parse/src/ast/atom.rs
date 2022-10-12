@@ -76,7 +76,7 @@ spanned! {
 
 spanned! {
     #[derive(Clone, Debug)]
-    pub struct Body(Vec<Expr>);
+    pub struct Body(new => Vec<Expr>);
 }
 
 #[cfg(test)]
