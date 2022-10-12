@@ -1,3 +1,5 @@
+//! Small pieces of data that help make up the [`AST`](crate::ast).
+
 use super::{Expr, Span};
 
 macro_rules! spanned {
@@ -75,6 +77,7 @@ spanned! {
 }
 
 spanned! {
+    /// A body of [`Expr`]essions.
     #[derive(Clone, Debug)]
     pub struct Body(new => Vec<Expr>);
 }
