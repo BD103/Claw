@@ -1,4 +1,4 @@
-use super::{Span, Expr};
+use super::{Expr, Span};
 
 macro_rules! spanned {
     {
@@ -149,15 +149,19 @@ mod tests {
         *my_mut_new_spanned = 3000;
 
         let inner_results = (3000, *my_new_mut_spanned, *my_mut_new_spanned);
-        let span_results = (0..4, my_new_mut_spanned.span().clone(), my_mut_new_spanned.span().clone());
+        let span_results = (
+            0..4,
+            my_new_mut_spanned.span().clone(),
+            my_mut_new_spanned.span().clone(),
+        );
 
         assert_eq!(inner_results.0, inner_results.1);
         assert_eq!(inner_results.0, inner_results.2);
         assert_eq!(inner_results.1, inner_results.2);
 
-        assert_eq!(span_results.0,span_results.1);
-        assert_eq!(span_results.0,span_results.2);
-        assert_eq!(span_results.1,span_results.2);
+        assert_eq!(span_results.0, span_results.1);
+        assert_eq!(span_results.0, span_results.2);
+        assert_eq!(span_results.1, span_results.2);
     }
 
     #[test]
