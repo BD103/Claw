@@ -61,3 +61,53 @@ spanned! {
     #[derive(Clone, Debug)]
     pub struct Ident(mut String);
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn span_macro() {
+        spanned! {
+            pub struct MySpanned(u8);
+        }
+
+        let my_spanned = MySpanned::new(12, 0..2);
+
+        assert_eq!(*my_spanned.inner(), 12);
+        assert_eq!(*my_spanned.span(), 0..2);
+
+        // Test Deref
+        assert_eq!(*my_spanned, 12);
+    }
+
+    #[test]
+    fn span_mut_macro() {
+        spanned! {
+            pub struct MyMutSpanned(mut i8);
+        }
+
+        let mut my_mut_spanned = MyMutSpanned::new(-33, 0..3);
+
+        assert_eq!(*my_mut_spanned.inner(), -33);
+        assert_eq!(*my_mut_spanned.span(), 0..3);
+
+        // Test mutability
+        *my_mut_spanned.inner_mut() = 110;
+
+        // Test Deref and DerefMut
+        assert_eq!(*my_mut_spanned, 110);
+
+        *my_mut_spanned = -36;
+
+        assert_eq!(*my_mut_spanned, -36);
+    }
+
+    #[test]
+    fn ident() {
+        let original_text = "hah_funny_pun".to_string();
+        let mydent = Ident::new(original_text.clone(), 0..13);
+
+        assert_eq!(*mydent, original_text);
+    }
+}
