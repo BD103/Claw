@@ -1,4 +1,4 @@
-use super::Span;
+use super::{Span, Expr};
 
 macro_rules! spanned {
     {
@@ -9,10 +9,6 @@ macro_rules! spanned {
         $scope struct $name($inner, Span);
 
         impl $name {
-            pub fn new(inner: $inner, span: Span) -> Self {
-                $name(inner, span)
-            }
-
             #[inline]
             pub fn inner(&self) -> &$inner {
                 &self.0
@@ -34,11 +30,11 @@ macro_rules! spanned {
     };
     {
         $(#[$outer:meta])*
-        $scope:vis struct $name:ident(mut $inner:ty);
+        $scope:vis struct $name:ident(mut $($modifiers:ident)* => $inner:ty);
     } => {
         spanned! {
             $(#[$outer])*
-            $scope struct $name($inner);
+            $scope struct $name($($modifiers =>)* $inner);
         }
 
         impl $name {
@@ -54,12 +50,33 @@ macro_rules! spanned {
             }
         }
     };
+    {
+        $(#[$outer:meta])*
+        $scope:vis struct $name:ident(new $($modifiers:ident)* => $inner:ty);
+    } => {
+        spanned! {
+            $(#[$outer])*
+            $scope struct $name($($modifiers =>)* $inner);
+        }
+
+        impl $name {
+            #[inline]
+            pub fn new(value: $inner, span: Span) -> Self {
+                $name(value, span)
+            }
+        }
+    };
 }
 
 spanned! {
     /// An identifier, very similar to [`TokenKind::Ident`](crate::lex::TokenKind::Ident).
     #[derive(Clone, Debug)]
-    pub struct Ident(mut String);
+    pub struct Ident(new => String);
+}
+
+spanned! {
+    #[derive(Clone, Debug)]
+    pub struct Body(Vec<Expr>);
 }
 
 #[cfg(test)]
@@ -72,7 +89,7 @@ mod tests {
             pub struct MySpanned(u8);
         }
 
-        let my_spanned = MySpanned::new(12, 0..2);
+        let my_spanned = MySpanned(12, 0..2);
 
         assert_eq!(*my_spanned.inner(), 12);
         assert_eq!(*my_spanned.span(), 0..2);
@@ -84,10 +101,10 @@ mod tests {
     #[test]
     fn span_mut_macro() {
         spanned! {
-            pub struct MyMutSpanned(mut i8);
+            pub struct MyMutSpanned(mut => i8);
         }
 
-        let mut my_mut_spanned = MyMutSpanned::new(-33, 0..3);
+        let mut my_mut_spanned = MyMutSpanned(-33, 0..3);
 
         assert_eq!(*my_mut_spanned.inner(), -33);
         assert_eq!(*my_mut_spanned.span(), 0..3);
@@ -101,6 +118,46 @@ mod tests {
         *my_mut_spanned = -36;
 
         assert_eq!(*my_mut_spanned, -36);
+    }
+
+    #[test]
+    fn span_new_macro() {
+        spanned! {
+            struct MyNewSpanned(new => u16);
+        }
+
+        let my_new_spanned = MyNewSpanned::new(84, 0..2);
+
+        assert_eq!(*my_new_spanned, 84);
+        assert_eq!(*my_new_spanned.span(), 0..2);
+    }
+
+    #[test]
+    fn span_new_mut_macro() {
+        spanned! {
+            pub(crate) struct MyNewMutSpanned(new mut => i16);
+        }
+
+        spanned! {
+            pub(crate) struct MyMutNewSpanned(mut new => i16);
+        }
+
+        let mut my_new_mut_spanned = MyNewMutSpanned::new(4570, 0..4);
+        let mut my_mut_new_spanned = MyMutNewSpanned::new(4570, 0..4);
+
+        *my_new_mut_spanned = 3000;
+        *my_mut_new_spanned = 3000;
+
+        let inner_results = (3000, *my_new_mut_spanned, *my_mut_new_spanned);
+        let span_results = (0..4, my_new_mut_spanned.span().clone(), my_mut_new_spanned.span().clone());
+
+        assert_eq!(inner_results.0, inner_results.1);
+        assert_eq!(inner_results.0, inner_results.2);
+        assert_eq!(inner_results.1, inner_results.2);
+
+        assert_eq!(span_results.0,span_results.1);
+        assert_eq!(span_results.0,span_results.2);
+        assert_eq!(span_results.1,span_results.2);
     }
 
     #[test]
