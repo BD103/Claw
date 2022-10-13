@@ -12,13 +12,24 @@ pub fn parse(script: &str) -> Result<(), Box<Report>> {
     let lexer = lex::create_lexer();
     let tokens = lexer.parse(script);
 
-    match tokens {
-        Ok(tokens) => {
-            dbg!(tokens);
+    let tokens = match tokens {
+        Ok(tokens) => tokens,
+        Err(errors) => {
+            dbg!(errors);
+            return Err(Box::new(error::generate_token_report(errors)));
         }
-        Err(error) => {
-            dbg!(error);
-        }
+    };
+
+    let parser = parse::create_parser();
+    let ast = parser.parse(tokens);
+
+    match ast {
+        Ok(ast) => {
+            dbg!(ast);
+        },
+        Err(errors) => {
+            dbg!(errors);
+        },
     };
 
     Ok(())
