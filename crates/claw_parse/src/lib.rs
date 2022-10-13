@@ -15,7 +15,6 @@ pub fn parse(script: &str) -> Result<(), Box<Report>> {
     let tokens = match tokens {
         Ok(tokens) => tokens,
         Err(errors) => {
-            dbg!(errors);
             return Err(Box::new(error::generate_token_report(errors)));
         }
     };
