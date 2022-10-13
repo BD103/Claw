@@ -12,6 +12,9 @@ mod tests;
 /// This is a [`Range`](std::ops::Range) representing where a piece of text starts and stops within the source file.
 pub type Span = std::ops::Range<usize>;
 
+/// A list of declarations, meant to represent the entirety of a Claw program.
+pub type AST = Vec<Declaration>;
+
 /// A declaration within the code.
 /// 
 /// This is the outer-most portion of the code, and includes function, enum, and sprite definitions.
