@@ -1,5 +1,5 @@
 [package]
-name = "claw_schema"
+name = "claw_sb3"
 version = "0.1.0-dev"
 authors = ["BD103"]
 edition = "2021"
