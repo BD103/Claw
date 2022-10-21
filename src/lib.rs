@@ -10,9 +10,9 @@ pub mod sb3 {
     pub use claw_sb3::*;
 }
 
-/// Re-imported from [`claw_stdlib`].
-pub mod stdlib {
-    pub use claw_stdlib::*;
+/// Re-imported from [`claw_middle`].
+pub mod middle {
+    pub use claw_middle::*;
 }
 
 #[cfg(feature = "verify")]

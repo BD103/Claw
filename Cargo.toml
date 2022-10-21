@@ -13,7 +13,7 @@ publish = false
 [dependencies]
 claw_parse = { path = "crates/claw_parse" }
 claw_sb3 = { path = "crates/claw_sb3" }
-claw_stdlib = { path = "crates/claw_stdlib" }
+claw_middle = { path = "crates/claw_middle" }
 claw_verify = { path = "crates/claw_verify", optional = true }
 
 [features]
@@ -24,6 +24,6 @@ members = [
     "crates/claw_driver",
     "crates/claw_parse",
     "crates/claw_sb3",
-    "crates/claw_stdlib",
+    "crates/claw_middle",
     "crates/claw_verify",
 ]
