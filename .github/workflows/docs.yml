@@ -1,0 +1,43 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches:
+      - "main"
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      
+      - name: Build docs
+        run: cargo doc --all-features --no-deps
+      
+      # This prevents Github from building the website as a Jekyll project
+      - name: Finalize documentation
+        run: |
+          touch target/doc/.nojekyll
+      
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: target/doc
+          single-commit: true
+          force: true
+          dry-run: true
