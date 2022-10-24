@@ -1,0 +1,13 @@
+[book]
+title = "Claw Documentation"
+authors = ["BD103"]
+description = "A tutorial and contributing guide for the Claw programming language."
+language = "en-US"
+
+[rust]
+edition = "2021"
+
+[output.html]
+site-url = "/Claw/"
+git-repository-url = "https://github.com/BD103/Claw"
+edit-url-template = "https://github.com/BD103/Claw/edit/main/docs/{path}"
