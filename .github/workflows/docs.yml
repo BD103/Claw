@@ -26,8 +26,8 @@ jobs:
           override: true
       
       - name: Build docs
-        run: cargo doc --all-features --no-deps
-      
+        run: cargo doc --all-features --no-deps --workspace
+
       # This prevents Github from building the website as a Jekyll project
       - name: Finalize documentation
         run: |
