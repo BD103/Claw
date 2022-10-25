@@ -12,31 +12,40 @@ env:
 
 
 jobs:
-  deploy:
+  rustdoc:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: stable
           override: true
-      
+
       - name: Build docs
         run: cargo doc --all-features --no-deps --workspace
-
-      # This prevents Github from building the website as a Jekyll project
-      - name: Finalize documentation
-        run: |
-          touch target/doc/.nojekyll
       
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload docs artifact
         with:
-          branch: gh-pages
-          folder: target/doc
-          single-commit: true
-          force: true
+          name: crate-docs
+          path: target/doc
+  
+  mdbook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Download mdBook and build docs
+        run: |
+          mkdir bin
+          curl -sSL https://github.com/rust-lang/mdBook/releases/download/v0.4.21/mdbook-v0.4.21-x86_64-unknown-linux-gnu.tar.gz | tar -xz --directory=bin
+          bin/mdbook build docs
+
+      - name: Upload docs artifact
+        with:
+          name: book-docs
+          path: docs/book
