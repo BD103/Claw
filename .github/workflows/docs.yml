@@ -9,10 +9,9 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
-
-
 jobs:
   rustdoc:
+    name: Build crate documentation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -27,14 +26,15 @@ jobs:
 
       - name: Build docs
         run: cargo doc --all-features --no-deps --workspace
-      
+
       - name: Upload docs artifact
         uses: actions/upload-artifact@v3
         with:
           name: crate-docs
           path: target/doc
-  
+
   mdbook:
+    name: Build book documentation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -64,15 +64,19 @@ jobs:
         with:
           name: book-docs
           path: site
-      
+
       - name: Download Rustdoc
         uses: actions/download-artifact@v3
         with:
           name: crate-docs
           path: site/docs
 
+      # This does the following:
+      # - Redirects /docs to /docs/claw
+      # - Prevents Github from thinking this is a Jekyll project
       - name: Finalize documentation
         run: |
+          echo "<meta http-equiv=\"refresh\" content=\"0; url=claw/index.html\">" > site/docs/index.html
           touch site/.nojekyll
       
       - name: Deploy to Github Pages
