@@ -29,6 +29,7 @@ jobs:
         run: cargo doc --all-features --no-deps --workspace
       
       - name: Upload docs artifact
+        uses: actions/upload-artifact@v3
         with:
           name: crate-docs
           path: target/doc
@@ -46,6 +47,7 @@ jobs:
           bin/mdbook build docs
 
       - name: Upload docs artifact
+        uses: actions/upload-artifact@v3
         with:
           name: book-docs
           path: docs/book
