@@ -17,6 +17,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: Linux-cargo-doc-stable-${{ hashFiles('**/Cargo.toml') }}
+
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
