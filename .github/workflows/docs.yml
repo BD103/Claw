@@ -9,6 +9,10 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
+concurrency:
+  group: deploy-docs
+  cancel-in-progress: true
+
 jobs:
   rustdoc:
     name: Build crate documentation
