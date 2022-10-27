@@ -66,12 +66,8 @@ jobs:
           override: true
 
       - name: Clippy
-        uses: actions-rs/clippy-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # Removed -W clippy::nursery because of false-positives
-          args: >
-            --workspace --all-features --
+        run: |
+          cargo clippy --workspace --all-features --
             -D warnings
             -W clippy::pedantic
             -W clippy::cargo
