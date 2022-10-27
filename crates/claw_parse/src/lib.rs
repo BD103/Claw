@@ -19,16 +19,15 @@ pub fn parse(script: &str) -> Result<(), Box<Report>> {
         }
     };
 
-    let parser = parse::create_parser();
-    let ast = parser.parse(tokens);
+    let ast = parse::parse(tokens);
 
     match ast {
         Ok(ast) => {
             dbg!(ast);
-        },
+        }
         Err(errors) => {
             dbg!(errors);
-        },
+        }
     };
 
     Ok(())

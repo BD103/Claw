@@ -1,8 +1,5 @@
-use chumsky::prelude::*;
+use crate::{ast::AST, error::ParseError, lex::Token};
 
-use crate::{lex::Token, ast::AST, error::ParseError};
-
-pub fn create_parser() -> impl Parser<Token, AST, Error = ParseError> {
-    todo!();
+pub fn parse(_tokens: Vec<Token>) -> Result<AST, ParseError> {
+    todo!()
 }
-

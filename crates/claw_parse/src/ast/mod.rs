@@ -1,5 +1,5 @@
 //! The abstract-syntax tree used to represent Claw code.
-//! 
+//!
 //! This is generated from a list of [`Token`](crate::lex::Token)s in the [`lex`](crate::lex)er. This conversion process is stored within the [`parse`](crate::parse) module.
 
 pub mod atom;
@@ -8,7 +8,7 @@ pub mod atom;
 mod tests;
 
 /// Represents a span of text.
-/// 
+///
 /// This is a [`Range`](std::ops::Range) representing where a piece of text starts and stops within the source file.
 pub type Span = std::ops::Range<usize>;
 
@@ -16,7 +16,7 @@ pub type Span = std::ops::Range<usize>;
 pub type AST = Vec<Declaration>;
 
 /// A declaration within the code.
-/// 
+///
 /// This is the outer-most portion of the code, and includes function, enum, and sprite definitions.
 #[derive(Clone, Debug)]
 pub enum Declaration {
@@ -42,7 +42,7 @@ pub enum Declaration {
 }
 
 /// An expression within a body of code.
-/// 
+///
 /// This is the inner-most portion of the code. It represents all kinds of values and function calls.
 #[derive(Clone, Debug)]
 pub enum Expr {
@@ -62,15 +62,15 @@ pub enum Expr {
 }
 
 /// An enum item, used within [`Declaration::Declare`].
-/// 
+///
 /// The reason this is a custom `struct` and not just a list of [`Ident`](atom::Ident)s is so you can set a default value for certain kinds of declarations.
-/// 
+///
 /// ```claw
 /// declare Var {
 ///     score = 0,
 ///     time_left = 3999.2,
 /// }
-/// 
+///
 /// declare Sprite {
 ///     Idle,
 ///     Walk1,
