@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["load_file","Reads the contents of a [`Path`] to a [`String`]."],["main",""]]};
