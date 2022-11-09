@@ -15,4 +15,6 @@ publish = false
 [features]
 
 [workspace]
-members = []
+members = [
+    "crates/claw_parse",
+]

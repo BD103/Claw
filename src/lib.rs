@@ -1,1 +1,1 @@
-//! Claw is a programming language that compiles into Scratch blocks, or SB3.
+#![doc = include_str!("../README.md")]
