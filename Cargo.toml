@@ -11,19 +11,8 @@ license = "MIT OR Apache-2.0"
 publish = false
 
 [dependencies]
-claw_parse = { path = "crates/claw_parse" }
-claw_sb3 = { path = "crates/claw_sb3" }
-claw_middle = { path = "crates/claw_middle" }
-claw_verify = { path = "crates/claw_verify", optional = true }
 
 [features]
-verify = ["dep:claw_verify"]
 
 [workspace]
-members = [
-    "crates/claw_driver",
-    "crates/claw_parse",
-    "crates/claw_sb3",
-    "crates/claw_middle",
-    "crates/claw_verify",
-]
+members = []
