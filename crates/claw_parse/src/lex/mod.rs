@@ -1,36 +1,41 @@
-mod token;
+use claw_middle::Span;
+use logos::Logos;
 
-pub use self::token::{Token, TokenKind, token};
-
-pub fn lex<'a>(source: &'a str) -> Tokenizer<'a> {
+pub fn lex<'source>(source: &'source str) -> Tokenizer<'source> {
     Tokenizer::new(source)
 }
 
-pub struct Tokenizer<'a> {
-    cursor: usize,
-    source: &'a str,
+pub struct Tokenizer<'source> {
+    inner: logos::Lexer<'source, TokenKind>,
 }
 
-impl<'a> Tokenizer<'a> {
-    fn new(source: &'a str) -> Self {
+impl<'source> Tokenizer<'source> {
+    fn new(source: &'source str) -> Self {
         Tokenizer {
-            cursor: 0,
-            source,
+            inner: TokenKind::lexer(source),
         }
     }
 }
 
-impl Iterator for Tokenizer<'_> {
+impl<'source> Iterator for Tokenizer<'source> {
     type Item = Token;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.cursor > self.source.len() - 1 {
-            return Some(Token {
-                kind: token!(EOF),
-                span: 0..0,
-            });
-        }
-
-        todo!()
+        Some(Token {
+            kind: self.inner.next()?,
+            span: self.inner.span(),
+        })
     }
+}
+
+pub struct Token {
+    pub kind: TokenKind,
+    pub span: Span,
+}
+
+#[derive(Logos, Debug, PartialEq)]
+#[non_exhaustive]
+pub enum TokenKind {
+    #[error]
+    Error,
 }
