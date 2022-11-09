@@ -1,3 +1,3 @@
-mod lex;
+pub mod lex;
 
 pub use self::lex::lex;
