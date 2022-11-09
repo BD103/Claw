@@ -16,5 +16,6 @@ publish = false
 
 [workspace]
 members = [
+    "crates/claw_middle",
     "crates/claw_parse",
 ]
