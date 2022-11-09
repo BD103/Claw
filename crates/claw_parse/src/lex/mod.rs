@@ -1,3 +1,7 @@
+mod token;
+
+pub use self::token::{Token, TokenKind, token};
+
 pub fn lex<'a>(source: &'a str) -> Tokenizer<'a> {
     Tokenizer::new(source)
 }
@@ -20,11 +24,13 @@ impl Iterator for Tokenizer<'_> {
     type Item = Token;
 
     fn next(&mut self) -> Option<Self::Item> {
+        if self.cursor > self.source.len() - 1 {
+            return Some(Token {
+                kind: token!(EOF),
+                span: 0..0,
+            });
+        }
+
         todo!()
     }
-}
-
-#[non_exhaustive]
-pub enum Token {
-    EOF,
 }
