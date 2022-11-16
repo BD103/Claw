@@ -19,7 +19,7 @@ The current installation process requires you to clone the repository and build 
 $ git clone https://github.com/BD103/Claw.git
 $ cd Claw
 $ cargo build --release
-$ cargo run --release -p claw_driver -- PATH/TO/file.claw
+$ cargo run --release -- PATH/TO/file.claw
 ```
 
 ## Contributing
