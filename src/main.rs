@@ -11,8 +11,6 @@ fn main() {
     let subscriber = FmtSubscriber::builder()
         .with_max_level(MAX_LEVEL)
         .finish();
-    
-
 
     tracing::subscriber::set_global_default(subscriber)
         .expect("Error setting global logging subscriber.");
